@@ -4,6 +4,16 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CefSharp.WinForms.NETCore" Version="90.6.50" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resource\" />
+    <Folder Include="Tools\" />
+  </ItemGroup>
 
 </Project>

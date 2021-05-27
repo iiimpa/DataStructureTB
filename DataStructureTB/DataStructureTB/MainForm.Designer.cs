@@ -1,7 +1,7 @@
 ﻿
 namespace DataStructureTB
 {
-    partial class MainForm
+    partial class BrowserForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,10 +29,18 @@ namespace DataStructureTB
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // BrowserForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Name = "BrowserForm";
+            this.Text = "BrowserForm";
+            this.Load += new System.EventHandler(this.BrowserForm_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
