@@ -21,9 +21,13 @@ namespace DataStructureTB
 
         private void BrowserForm_Load(object sender, EventArgs e)
         {
-            var chrome = new ChromeDriver("https://login.taobao.com/member/login.jhtml");
-            chrome.Dock = DockStyle.Fill;
-            this.Controls.Add(chrome);
+            //var chrome = new ChromeDriver("https://login.taobao.com/member/login.jhtml");
+            //chrome.Dock = DockStyle.Fill;
+            //this.Controls.Add(chrome);
+            SuspendLayout();
+            var order = new Order();
+            this.Controls.AddRange(new System.Windows.Forms.Control[] { order });
+            ResumeLayout(false);
         }
     }
 }

@@ -33,9 +33,10 @@ namespace DataStructureTB
             // 
             // BrowserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1029, 529);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BrowserForm";
             this.Text = "BrowserForm";
             this.Load += new System.EventHandler(this.BrowserForm_Load);

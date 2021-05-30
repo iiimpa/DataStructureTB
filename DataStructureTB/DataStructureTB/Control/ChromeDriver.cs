@@ -21,5 +21,17 @@ namespace DataStructureTB.Control
             InitializeComponent();
         }
 
+        public string Initfingerprint(Dictionary<string, string> values)
+        {
+            string js = ""; //从Resource读取的js
+            if (values == null || values.Count == 0)
+                return js;
+            foreach (KeyValuePair<string, string> item in values)
+            {
+                js = js.Replace("data." + item.Key, item.Value);
+            }
+            return js;
+        }
+
     }
 }
