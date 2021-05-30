@@ -1,7 +1,7 @@
 ﻿
-namespace DataStructureTB
+namespace DataStructureTB.Forms
 {
-    partial class BrowserForm
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -31,14 +31,16 @@ namespace DataStructureTB
         {
             this.SuspendLayout();
             // 
-            // BrowserForm
+            // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1029, 529);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "BrowserForm";
-            this.Text = "BrowserForm";
+            this.ClientSize = new System.Drawing.Size(809, 458);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "MainForm";
+            this.Text = "淘宝小工具";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BrowserForm_Load);
             this.ResumeLayout(false);
 
