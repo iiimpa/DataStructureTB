@@ -8,12 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CefSharp.WinForms.NETCore" Version="90.6.50" />
+    <Compile Remove="Resource\**" />
+    <Compile Remove="Tools\**" />
+    <EmbeddedResource Remove="Resource\**" />
+    <EmbeddedResource Remove="Tools\**" />
+    <None Remove="Resource\**" />
+    <None Remove="Tools\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resource\" />
-    <Folder Include="Tools\" />
+    <PackageReference Include="CefSharp.WinForms.NETCore" Version="90.6.50" />
   </ItemGroup>
 
 </Project>

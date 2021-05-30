@@ -21,7 +21,15 @@ namespace DataStructureTB
 
         private void BrowserForm_Load(object sender, EventArgs e)
         {
-            var chrome = new ChromeDriver("https://login.taobao.com/member/login.jhtml");
+            CefSettings settings = new CefSettings();
+            settings.Locale = "zh-CN";
+
+
+            CefSharp.Cef.Initialize(settings, true);
+            
+
+
+            ChromeDriver chrome = new ChromeDriver("https://login.taobao.com/member/login.jhtml");
             chrome.Dock = DockStyle.Fill;
             this.Controls.Add(chrome);
         }
