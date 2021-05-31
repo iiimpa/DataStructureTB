@@ -10,7 +10,10 @@
     <Compile Update="Control\Navbar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="Control\Order.cs">
+    <Compile Update="Control\OrderItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Control\OrderListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Forms\LoginDialog.cs">

@@ -20,4 +20,8 @@
     <PackageReference Include="CefSharp.WinForms.NETCore" Version="90.6.50" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
 </Project>
