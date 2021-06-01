@@ -58,7 +58,7 @@ namespace DataStructureTB.Forms
         private void uc_orderlst_Click(object sender, OrderItemButtonClickArgs e)
         {
             this.tabs.SelectedTab = this.tabp_web;
-            this.webCtrl.Load("https://login.taobao.com/member/login.jhtml");
+            this.webCtrl.Load("https://www.baidu.com");
         }
     }
 }

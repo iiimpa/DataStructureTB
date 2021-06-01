@@ -1,0 +1,11 @@
+{
+  "Discription": "",
+  "Version": "",
+  "JavaScripts": [
+    {
+      "HandleUrl": "*",
+      "Src": "",
+      "Path": "./Resource/"
+    }
+  ]
+}
