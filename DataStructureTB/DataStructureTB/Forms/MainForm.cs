@@ -26,10 +26,29 @@ namespace DataStructureTB.Forms
 
         private void InitializerSef()
         {
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+
+
             this.webCtrl = new ChromeDriver("");
             this.webCtrl.Dock = DockStyle.Fill;
-
-            this.Controls.Add(this.webCtrl);
+            this.tabp_web.Controls.Add(this.webCtrl);
         }
 
 
@@ -38,10 +57,6 @@ namespace DataStructureTB.Forms
             //var chrome = new ChromeDriver("https://login.taobao.com/member/login.jhtml");
             //chrome.Dock = DockStyle.Fill;
             //this.Controls.Add(chrome);
-            //SuspendLayout();
-            //var order = new Order();
-            //this.Controls.AddRange(new System.Windows.Forms.Control[] { order });
-            //ResumeLayout(false);
 
             this.webCtrl.Load("https://login.taobao.com/member/login.jhtml");
         }

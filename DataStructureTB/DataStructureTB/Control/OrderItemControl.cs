@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace DataStructureTB.Control
 {
-    public partial class Order : UserControl
+    public partial class OrderItemControl : UserControl
     {
-        public Order()
+        public OrderItemControl()
         {
             InitializeComponent();
         }
