@@ -44,6 +44,7 @@
             this.btn_use.TabIndex = 0;
             this.btn_use.Text = "立即使用";
             this.btn_use.UseVisualStyleBackColor = true;
+            this.btn_use.Click += new System.EventHandler(this.btn_use_Click);
             // 
             // lb_title
             // 

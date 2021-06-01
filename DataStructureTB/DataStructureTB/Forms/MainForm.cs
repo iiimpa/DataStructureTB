@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CefSharp.WinForms;
 using DataStructureTB.Control;
+using DataStructureTB.Model.EventArguments;
 
 namespace DataStructureTB.Forms
 {
@@ -44,6 +38,7 @@ namespace DataStructureTB.Forms
             this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
             this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
             this.uc_orderlst.AddOrderItem(new OrderListControl.OrderItem() { });
+            this.uc_orderlst.OrderItemButtonClick += this.uc_orderlst_Click;
 
 
             this.webCtrl = new ChromeDriver("");
@@ -57,7 +52,12 @@ namespace DataStructureTB.Forms
             //var chrome = new ChromeDriver("https://login.taobao.com/member/login.jhtml");
             //chrome.Dock = DockStyle.Fill;
             //this.Controls.Add(chrome);
+        }
 
+        //当订单被点击时
+        private void uc_orderlst_Click(object sender, OrderItemButtonClickArgs e)
+        {
+            this.tabs.SelectedTab = this.tabp_web;
             this.webCtrl.Load("https://login.taobao.com/member/login.jhtml");
         }
     }
