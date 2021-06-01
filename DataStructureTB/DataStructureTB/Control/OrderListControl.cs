@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using DataStructureTB.Model.EventArguments;
 
 namespace DataStructureTB.Control
 {
@@ -18,6 +16,10 @@ namespace DataStructureTB.Control
 
         private List<OrderItem[]> items;
 
+        /// <summary>
+        /// 订单项的按钮的事件
+        /// </summary>
+        public EventHandler<OrderItemButtonClickArgs> OrderItemButtonClick;
 
 
         private int GetRowCount()
@@ -40,7 +42,6 @@ namespace DataStructureTB.Control
             }
             this.items[this.GetRowCount() - 1][this.GetColCount() - 1] = item;
         }
-
         private void AppendOrderItemControl(OrderItemControl itemCtrl)
         {
             FlowLayoutPanel left = this.flow_left;
@@ -62,8 +63,9 @@ namespace DataStructureTB.Control
 
             OrderItemControl item = new OrderItemControl();
             item.Anchor = AnchorStyles.None;
-            item.Tag = order.Tag;
-            
+            item.Tag = order;
+            item.SetClickHandle(this.OrderItemButton_Click);
+
             return item;
         }
         //向尾部追加新的订单项
@@ -73,6 +75,19 @@ namespace DataStructureTB.Control
             this.AppendOrderItem(item);
             this.AppendOrderItemControl(orderCtrl);
         }
+        private void OnOrderItemButtonClick(OrderItemButtonClickArgs e)
+        {
+            this.OrderItemButtonClick?.Invoke(this, e);
+        }
+
+
+        private void OrderItemButton_Click(object sender, EventArgs e)
+        {
+            OrderItemControl origin = sender as OrderItemControl;
+            OrderItemButtonClickArgs args = new OrderItemButtonClickArgs(origin?.Tag as OrderItem);
+            this.OnOrderItemButtonClick(args);
+        }
+
 
 
         public List<OrderItem> GetOrderItems()
@@ -83,8 +98,7 @@ namespace DataStructureTB.Control
         {
             this.AppendItem(item);
         }
-
-
+        
 
         /// <summary>
         /// 传给OrderItemControl的 订单数据model
