@@ -1,7 +1,6 @@
 ﻿using CefSharp;
-using System;
+using DataStructureTB.Model;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DataStructureTB.Handlers
 {
@@ -14,7 +13,15 @@ namespace DataStructureTB.Handlers
         {
             //return base.GetResourceResponseFilter(chromiumWebBrowser, browser, frame, request, response);
             //return new ResponseFilter(request.Url, chromiumWebBrowser, "");
-            return new GenericResponseHandle();
+            ResponseContent rspCnt = new ResponseContent();
+            rspCnt.Charset = response.Charset;
+            rspCnt.MimeType = response.MimeType;
+            rspCnt.Headers = new System.Collections.Specialized.NameValueCollection(response.Headers);
+            rspCnt.ErrorCode = response.ErrorCode;
+            rspCnt.StatusCode = response.StatusCode;
+            rspCnt.StatusText = response.StatusText;
+
+            return new GenericResponseHandle(rspCnt);
         }
     }
 }
