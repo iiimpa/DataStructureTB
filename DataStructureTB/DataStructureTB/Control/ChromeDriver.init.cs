@@ -1,8 +1,8 @@
-﻿using CefSharp.Core;
-using DataStructureTB.Handlers;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Text;
+using CefSharp.Core;
+using DataStructureTB.Handlers;
+using System.Collections.Generic;
 
 namespace DataStructureTB.Control
 {
@@ -18,6 +18,7 @@ namespace DataStructureTB.Control
             base.Dock = System.Windows.Forms.DockStyle.Fill;
 
             //Handlers
+            base.KeyboardHandler = new KeyboardHandler();
             base.LifeSpanHandler = new LifeSpanHandler();
             base.RequestHandler = new RequestHandler();
 
