@@ -18,6 +18,8 @@ namespace DataStructureTB.Handlers
         public HtmlTextResponseHandle(ResponseContent rsp)
         {
             this.rsqContent = rsp;
+            this.jsDirectror = new ScriptTabDirectror();
+            this.htmlBuild = new HtmlTagBuilder();
         }
 
 
@@ -26,7 +28,8 @@ namespace DataStructureTB.Handlers
         private InputStream dataInput;      //过滤数据输入端
         private ProcessStream dataProcess;  //过滤数据处理
         private OutputStream dataOutput;    //过滤数据输出端
-
+        private ScriptTabDirectror jsDirectror; //组装script标签
+        private HtmlTagBuilder htmlBuild;   //html标签生成
 
         //当前请求的响应是否能够处理
         private bool IsHtmlResposne()
@@ -38,20 +41,23 @@ namespace DataStructureTB.Handlers
         //注入js脚本操作
         private byte[] InjectionJS(byte[] html)
         {
-            string text = Encoding.UTF8.GetString(html);
-            
-            foreach(ResponseFilterConfigItem jsCfg in AppConfigManager.Inst.GetResponseFilterConfigItems())
+            string result = Encoding.UTF8.GetString(html);
+            string script = null;
+            foreach (ResponseFilterConfigItem jsCfg in AppConfigManager.Inst.GetResponseFilterConfigItems())
             {
-                int injectionPos = text.IndexOf(jsCfg.InjectionPos);
+                int injectionPos = result.IndexOf(jsCfg.InjectionPos);
                 if (injectionPos < 0)
                     continue;
 
                 if (jsCfg.InjectionOn == "right")
                     injectionPos += jsCfg.InjectionPos.Length;
-                text = text.Insert(injectionPos, $"<script>{jsCfg.ScriptContent}<//script>");
+
+                jsDirectror.Construct(jsCfg, htmlBuild);
+                script = htmlBuild.Build();
+                result = result.Insert(injectionPos, script);
             }
 
-            return Encoding.UTF8.GetBytes(text);
+            return Encoding.UTF8.GetBytes(result);
         }
 
 

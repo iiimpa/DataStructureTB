@@ -8,12 +8,21 @@ namespace DataStructureTB.Handlers
     {
         internal KeyboardHandler() { }
 
+
+        private bool isShowDevTool;
+
         protected override bool OnKeyEvent(IWebBrowser chromiumWebBrowser, IBrowser browser, KeyType type, int windowsKeyCode, int nativeKeyCode, CefEventFlags modifiers, bool isSystemKey)
         {
+#if DEBUG
             if (windowsKeyCode == (int)System.Windows.Forms.Keys.F12)
             {
-                chromiumWebBrowser.GetDevToolsClient();
+                if (this.isShowDevTool)
+                    browser.CloseDevTools();
+                else
+                    browser.ShowDevTools();
+                this.isShowDevTool = !this.isShowDevTool;
             }
+#endif
             return base.OnKeyEvent(chromiumWebBrowser, browser, type, windowsKeyCode, nativeKeyCode, modifiers, isSystemKey);
         }
         protected override bool OnPreKeyEvent(IWebBrowser chromiumWebBrowser, IBrowser browser, KeyType type, int windowsKeyCode, int nativeKeyCode, CefEventFlags modifiers, bool isSystemKey, ref bool isKeyboardShortcut)

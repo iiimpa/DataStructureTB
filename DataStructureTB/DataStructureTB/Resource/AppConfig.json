@@ -3,12 +3,12 @@
   "Version": "",
   "JavaScripts": [
     {
-      "InjectionPos": "</head>",
-      "InjectionOn": "left",
+      "InjectionPos": "<head>",
+      "InjectionOn": "right",
       "HandleUrl": "*",
-      "Src": "",
-      "Path": "./Resource/",
-      "ScriptContent": "alert('hello world');"
+      "Src": "file::///E:/MyGitProjects/DataStructureTB/DataStructureTB/DataStructureTB/bin/Debug/netcoreapp3.1/Resource/test.js",
+      "Path": "",
+      "ScriptContent": ""
     }
   ]
 }
