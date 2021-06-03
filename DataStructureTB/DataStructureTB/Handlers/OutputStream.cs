@@ -29,6 +29,7 @@ namespace DataStructureTB.Handlers
         internal uint OutputCount { get; private set; }
         internal uint OutputLastly => (uint)this.outCached.Count;
 
+
         private bool OutputNext()
         {
             if (this.outCached.First == null)
@@ -38,10 +39,11 @@ namespace DataStructureTB.Handlers
             this.outCached.RemoveFirst();
             return true;
         }
-        private byte Current()
+        private byte OutPutCurrent()
         {
             return this.outPos.Value;
         }
+
 
 
         internal uint Receive(byte[] input)
@@ -56,23 +58,26 @@ namespace DataStructureTB.Handlers
             }
             return 0;
         }
-
         internal uint Output(Stream output)
         {
+            //当前总共能够输出的数据大小
             long totalLength = Math.Min(output.Length, this.OutputLastly);
 
-            byte[] bs = new byte[1024];
-            int writed = 0;
-            int i = 0;
-            while (writed < totalLength)
+            byte[] block = new byte[1024];     //数据输出块
+            int dataWrited = 0;
+            int blockPos = 0;
+            while (dataWrited < totalLength)
             {
-                for (i = 0; i < bs.Length && writed <= totalLength && this.OutputNext(); ++i, ++writed)
+                //将数据填充至块
+                for (blockPos = 0; blockPos < block.Length && dataWrited <= totalLength && this.OutputNext(); ++blockPos, ++dataWrited)
                 {
-                    bs[i] = this.Current();
+                    block[blockPos] = this.OutPutCurrent();
                 }
-                output.Write(bs, 0, i);
+                //将数据块输出
+                output.Write(block, 0, blockPos);
             }
 
+            //记录输出量的总数
             this.OutputCount += (uint)totalLength;
             return (uint)totalLength;
         }

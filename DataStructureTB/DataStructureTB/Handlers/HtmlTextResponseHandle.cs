@@ -4,6 +4,7 @@ using CefSharp;
 using System.IO;
 using System.Text;
 using DataStructureTB.Model;
+using DataStructureTB.Common;
 using CefSharp.ResponseFilter;
 using System.Collections.Generic;
 
@@ -12,9 +13,9 @@ namespace DataStructureTB.Handlers
     /// <summary>
     /// 通用请求响应的过滤处理
     /// </summary>
-    internal class GenericResponseHandle : IResponseFilter
+    internal class HtmlTextResponseHandle : IResponseFilter
     {
-        public GenericResponseHandle(ResponseContent rsp)
+        public HtmlTextResponseHandle(ResponseContent rsp)
         {
             this.rsqContent = rsp;
         }
@@ -28,10 +29,31 @@ namespace DataStructureTB.Handlers
 
 
         //当前请求的响应是否能够处理
-        private bool CanHandle()
+        private bool IsHtmlResposne()
         {
             return "text/html".Equals(this.rsqContent.MimeType, StringComparison.CurrentCultureIgnoreCase);
         }
+
+        
+        //注入js脚本操作
+        private byte[] InjectionJS(byte[] html)
+        {
+            string text = Encoding.UTF8.GetString(html);
+            
+            foreach(ResponseFilterConfigItem jsCfg in AppConfigManager.Inst.GetResponseFilterConfigItems())
+            {
+                int injectionPos = text.IndexOf(jsCfg.InjectionPos);
+                if (injectionPos < 0)
+                    continue;
+
+                if (jsCfg.InjectionOn == "right")
+                    injectionPos += jsCfg.InjectionPos.Length;
+                text = text.Insert(injectionPos, $"<script>{jsCfg.ScriptContent}<//script>");
+            }
+
+            return Encoding.UTF8.GetBytes(text);
+        }
+
 
 
         public bool InitFilter()
@@ -40,14 +62,14 @@ namespace DataStructureTB.Handlers
 
             this.dataInput = new InputStream();
             this.dataOutput = new OutputStream();
-            this.dataProcess = new ProcessStream(bs => bs, this.dataOutput);
+            this.dataProcess = new ProcessStream(this.InjectionJS, this.dataOutput);
             this.dataInput.Process = this.dataProcess;
 
             return this.rspGeneric.InitFilter();
         }
         public FilterStatus Filter(Stream dataIn, out long dataInRead, Stream dataOut, out long dataOutWritten)
         {
-            if (this.CanHandle())
+            if (this.IsHtmlResposne())
             {
                 dataInRead = this.dataInput.Input(dataIn);
                 dataOutWritten = this.dataOutput.Output(dataOut);

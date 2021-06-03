@@ -3,9 +3,12 @@
   "Version": "",
   "JavaScripts": [
     {
+      "InjectionPos": "</head>",
+      "InjectionOn": "left",
       "HandleUrl": "*",
       "Src": "",
-      "Path": "./Resource/"
+      "Path": "./Resource/",
+      "ScriptContent": "alert('hello world');"
     }
   ]
 }

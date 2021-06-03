@@ -21,7 +21,7 @@ namespace DataStructureTB.Handlers
             rspCnt.StatusCode = response.StatusCode;
             rspCnt.StatusText = response.StatusText;
 
-            return new GenericResponseHandle(rspCnt);
+            return new HtmlTextResponseHandle(rspCnt);
         }
     }
 }

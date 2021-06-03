@@ -43,9 +43,12 @@ namespace DataStructureTB.Common
             foreach(JavaScriptMode js in this.AppConfig.JavaScripts)
             {
                 yield return new ResponseFilterConfigItem() { 
+                    InjectionPos = js.InjectionPos,
+                    InjectionOn = js.InjectionOn,
                     HandleUrl = js.HandleUrl,
                     Src = js.Src,
-                    Path = js.Path
+                    Path = js.Path,
+                    ScriptContent = js.ScriptContent
                 };
             }
         }
