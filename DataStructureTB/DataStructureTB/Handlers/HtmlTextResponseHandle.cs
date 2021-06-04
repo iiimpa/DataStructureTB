@@ -17,49 +17,22 @@ namespace DataStructureTB.Handlers
     {
         public HtmlTextResponseHandle(ResponseContent rsp)
         {
-            this.rsqContent = rsp;
-            this.jsDirectror = new ScriptTabDirectror();
-            this.htmlBuild = new HtmlTagBuilder();
+            this.rspContent = rsp;
         }
 
 
-        private ResponseContent rsqContent; //响应上下文
+        private ResponseContent rspContent; //响应上下文
         private IResponseFilter rspGeneric; //通用的过滤器
         private InputStream dataInput;      //过滤数据输入端
-        private ProcessStream dataProcess;  //过滤数据处理
+        private ProcessStream jsInjectProcess;  //过滤数据处理
         private OutputStream dataOutput;    //过滤数据输出端
-        private ScriptTabDirectror jsDirectror; //组装script标签
-        private HtmlTagBuilder htmlBuild;   //html标签生成
 
-        //当前请求的响应是否能够处理
-        private bool IsHtmlResposne()
+        //当前请求的响应是否为 'text/html'
+        private bool IsHtmlMimeRespone()
         {
-            return "text/html".Equals(this.rsqContent.MimeType, StringComparison.CurrentCultureIgnoreCase);
+            string htmlMime = "text/html";
+            return htmlMime.Equals(this.rspContent.MimeType, StringComparison.CurrentCultureIgnoreCase);
         }
-
-        
-        //注入js脚本操作
-        private byte[] InjectionJS(byte[] html)
-        {
-            string result = Encoding.UTF8.GetString(html);
-            string script = null;
-            foreach (ResponseFilterConfigItem jsCfg in AppConfigManager.Inst.GetResponseFilterConfigItems())
-            {
-                int injectionPos = result.IndexOf(jsCfg.InjectionPos);
-                if (injectionPos < 0)
-                    continue;
-
-                if (jsCfg.InjectionOn == "right")
-                    injectionPos += jsCfg.InjectionPos.Length;
-
-                jsDirectror.Construct(jsCfg, htmlBuild);
-                script = htmlBuild.Build();
-                result = result.Insert(injectionPos, script);
-            }
-
-            return Encoding.UTF8.GetBytes(result);
-        }
-
 
 
         public bool InitFilter()
@@ -68,16 +41,22 @@ namespace DataStructureTB.Handlers
 
             this.dataInput = new InputStream();
             this.dataOutput = new OutputStream();
-            this.dataProcess = new ProcessStream(this.InjectionJS, this.dataOutput);
-            this.dataInput.Process = this.dataProcess;
+            this.jsInjectProcess = new JavaScriptInjectionProcess();
+
+            this.dataInput.Process = this.jsInjectProcess;
+            this.jsInjectProcess.SetOutput(this.dataOutput);
+            (this.jsInjectProcess as JavaScriptInjectionProcess).SetEnviroment(this.rspContent);
+            (this.jsInjectProcess as JavaScriptInjectionProcess).SetInjectionItem(AppConfigManager.Inst.GetResponseFilterConfigItems());
 
             return this.rspGeneric.InitFilter();
         }
         public FilterStatus Filter(Stream dataIn, out long dataInRead, Stream dataOut, out long dataOutWritten)
         {
-            if (this.IsHtmlResposne())
+            if (this.IsHtmlMimeRespone())
             {
+                //输入数据处理
                 dataInRead = this.dataInput.Input(dataIn);
+                //输出处理的数据
                 dataOutWritten = this.dataOutput.Output(dataOut);
 
                 //如果数据没有全部输出，则还需要处理

@@ -11,9 +11,8 @@ namespace DataStructureTB.Handlers
     {
         protected override IResponseFilter GetResourceResponseFilter(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IResponse response)
         {
-            //return base.GetResourceResponseFilter(chromiumWebBrowser, browser, frame, request, response);
-            //return new ResponseFilter(request.Url, chromiumWebBrowser, "");
             ResponseContent rspCnt = new ResponseContent();
+            rspCnt.Url = request.Url;
             rspCnt.Charset = response.Charset;
             rspCnt.MimeType = response.MimeType;
             rspCnt.Headers = new System.Collections.Specialized.NameValueCollection(response.Headers);

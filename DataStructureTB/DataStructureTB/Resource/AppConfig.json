@@ -5,9 +5,9 @@
     {
       "InjectionPos": "<head>",
       "InjectionOn": "right",
-      "HandleUrl": "*",
-      "Src": "file::///E:/MyGitProjects/DataStructureTB/DataStructureTB/DataStructureTB/bin/Debug/netcoreapp3.1/Resource/test.js",
-      "Path": "",
+      "HandleUrl": "https://www.baidu.om",
+      "Src": "",
+      "Path": "./Resource/test.js",
       "ScriptContent": ""
     }
   ]

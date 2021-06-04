@@ -10,6 +10,7 @@ namespace DataStructureTB.Model
     /// </summary>
     internal class ResponseContent
     {
+        internal string Url { get; set; }
         internal string Charset { get; set; }
         internal string MimeType { get; set; }
         internal NameValueCollection Headers { get; set; }

@@ -9,19 +9,29 @@ namespace DataStructureTB.Handlers
     /// </summary>
     internal class ProcessStream
     {
-        internal ProcessStream(Func<byte[], byte[]> process, ProcessStream midProcess) 
+        internal ProcessStream()
         { }
         internal ProcessStream(Func<byte[], byte[]> process, OutputStream output) 
         {
             this.process = process;
             this.output = output;
         }
+        internal ProcessStream(Func<byte[], byte[]> process, ProcessStream midProcess) 
+        { }
 
 
-        private Func<byte[], byte[]> process;
         private OutputStream output;
+        private Func<byte[], byte[]> process;
 
 
+        internal void SetOutput(OutputStream output)
+        {
+            this.output = output;
+        }
+        internal void SetProcess(Func<byte[], byte[]> process)
+        {
+            this.process = process;
+        }
         internal uint Receive(byte[] input)
         {
             byte[] ans = this.process(input);
