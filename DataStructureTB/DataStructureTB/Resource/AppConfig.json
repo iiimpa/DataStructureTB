@@ -1,0 +1,14 @@
+{
+  "Discription": "",
+  "Version": "",
+  "JavaScripts": [
+    {
+      "InjectionPos": "<head>",
+      "InjectionOn": "right",
+      "HandleUrl": "https://www.baidu.om",
+      "Src": "",
+      "Path": "./Resource/test.js",
+      "ScriptContent": ""
+    }
+  ]
+}
