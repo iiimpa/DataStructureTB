@@ -28,7 +28,6 @@ namespace DataStructureTB.AppBusine
             if (lognFrm.Visible)
                 return;
 
-            //System.Windows.Forms.Application.Run(lognFrm);
             lognFrm.ShowDialog();
         }
         private void SetAuthSuccessFlag()
@@ -56,7 +55,7 @@ namespace DataStructureTB.AppBusine
         internal void GoLogin()
         {
             this.ShowLogin();               //登录窗体交互  
-            this.SetAuthSuccessFlag();      //设置登录状态为成功
+            this.SetAuthFailedFlag();       
         }
     }
 }

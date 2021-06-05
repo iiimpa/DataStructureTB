@@ -27,7 +27,6 @@ namespace DataStructureTB.Control
 
             //替换好的fingerprint js
             string js = "<script>" + Initfingerprint(fingerprint) + "</script>";
-
         }
     }
 }
