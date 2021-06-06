@@ -36,7 +36,6 @@ namespace DataStructureTB.Forms
             this.uc_orderlst = new DataStructureTB.Control.OrderListControl();
             this.panel_notice = new System.Windows.Forms.Panel();
             this.panel_controlPanel = new System.Windows.Forms.Panel();
-            this.tabp_web = new System.Windows.Forms.TabPage();
             this.tabs.SuspendLayout();
             this.tabp_home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.split_LeftWithRight)).BeginInit();
@@ -52,7 +51,6 @@ namespace DataStructureTB.Forms
             // tabs
             // 
             this.tabs.Controls.Add(this.tabp_home);
-            this.tabs.Controls.Add(this.tabp_web);
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.tabs.Location = new System.Drawing.Point(0, 0);
@@ -144,16 +142,6 @@ namespace DataStructureTB.Forms
             this.panel_controlPanel.Size = new System.Drawing.Size(360, 443);
             this.panel_controlPanel.TabIndex = 0;
             // 
-            // tabp_web
-            // 
-            this.tabp_web.Location = new System.Drawing.Point(4, 26);
-            this.tabp_web.Name = "tabp_web";
-            this.tabp_web.Padding = new System.Windows.Forms.Padding(3);
-            this.tabp_web.Size = new System.Drawing.Size(772, 451);
-            this.tabp_web.TabIndex = 1;
-            this.tabp_web.Text = "web";
-            this.tabp_web.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -165,7 +153,6 @@ namespace DataStructureTB.Forms
             this.Name = "MainForm";
             this.Text = "淘宝小工具";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.BrowserForm_Load);
             this.tabs.ResumeLayout(false);
             this.tabp_home.ResumeLayout(false);
             this.split_LeftWithRight.Panel1.ResumeLayout(false);
@@ -185,7 +172,6 @@ namespace DataStructureTB.Forms
         private System.Windows.Forms.TabControl tabs;
         private System.Windows.Forms.TabPage tabp_home;
         private Control.OrderListControl uc_orderlst;
-        private System.Windows.Forms.TabPage tabp_web;
         private System.Windows.Forms.SplitContainer split_LeftWithRight;
         private System.Windows.Forms.SplitContainer split_OrderlstWithNotice;
         private System.Windows.Forms.Panel panel_notice;

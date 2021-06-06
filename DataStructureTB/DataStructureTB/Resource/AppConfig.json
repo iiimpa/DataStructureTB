@@ -1,6 +1,12 @@
 {
   "Discription": "",
   "Version": "",
+  "LocalStoragePathEx": "Local Storage\\leveldb",
+  "LocalStoragesDirPath": ".\\Users Data",
+  "InjectObj": "apiInject",
+  "InjectFinger": "apiInject.finger",
+  "InjectTaoUser": "apiInject.user",
+  "InjectTaoPass": "apiInject.pass",
   "JavaScripts": [
     {
       "InjectionPos": "</head>",

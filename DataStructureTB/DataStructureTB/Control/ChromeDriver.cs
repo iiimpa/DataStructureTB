@@ -1,11 +1,12 @@
 ﻿using System;
 using CefSharp;
-using System.Collections.Generic;
 using System.Windows.Forms;
+using DataStructureTB.Handlers;
+using System.Collections.Generic;
 
 namespace DataStructureTB.Control
 {
-    public partial class ChromeDriver : CefSharp.WinForms.ChromiumWebBrowser
+    public partial class ChromeDriver : CefSharp.WinForms.ChromiumWebBrowser, IFingerInfo
     {
         public ChromeDriver() : base()
         {
@@ -22,17 +23,18 @@ namespace DataStructureTB.Control
             InitializeComponent();
         }
 
-        public string Initfingerprint(Dictionary<string, string> values)
-        {
-            string js = ""; //从Resource读取的js
-            if (values == null || values.Count == 0)
-                return js;
-            foreach (KeyValuePair<string, string> item in values)
-            {
-                js = js.Replace("data." + item.Key, item.Value);
-            }
-            return js;
-        }
 
+        public int CookieId { get; set; }
+        public string Cookie { get; set; }
+        public string Fingerprint { get; set; }
+        public string TaoUser { get; set; }
+        public string TaoPass { get; set; }
+
+        internal void SetBindInfo(int cookieId, string cookie, string fingerprint) 
+        {
+            this.CookieId = cookieId;
+            this.Cookie = cookie;
+            this.Fingerprint = fingerprint;
+        }
     }
 }

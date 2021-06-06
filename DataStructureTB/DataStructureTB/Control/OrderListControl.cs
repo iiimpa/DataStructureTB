@@ -47,7 +47,7 @@ namespace DataStructureTB.Control
             FlowLayoutPanel left = this.flow_left;
             FlowLayoutPanel right = this.flow_right;
             
-            if(left.Controls.Count >= right.Controls.Count)
+            if(left.Controls.Count > right.Controls.Count)
             {
                 right.Controls.Add(itemCtrl);
             }
@@ -64,10 +64,14 @@ namespace DataStructureTB.Control
             OrderItemControl item = new OrderItemControl();
             item.Anchor = AnchorStyles.None;
             item.Tag = order;
+            item.SetTitle($"{order.Name}({order.Mold})");
+            item.SetDueDate(order.Duedate);
             item.SetClickHandle(this.OrderItemButton_Click);
 
             return item;
         }
+
+
         //向尾部追加新的订单项
         private void AppendItem(OrderItem item)
         {
@@ -108,7 +112,7 @@ namespace DataStructureTB.Control
             public int Id { get; set; }
             public string Name { get; set; }
             public string Mold { get; set; }
-            public ulong Duedate { get; set; }
+            public long Duedate { get; set; }
             /// <summary>
             /// 扩展数据
             /// </summary>

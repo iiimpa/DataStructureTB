@@ -23,7 +23,7 @@ namespace DataStructureTB.Common
         }
         internal Task<HttpResponseMessage> SendHttpRequstAsync(HttpAccess access)
         {
-            if (access.UrlArgs != null || access.UrlArgs.Length <= 0)
+            if (access.UrlArgs != null && access.UrlArgs.Length > 0)
                 access.API.Url = string.Format(access.API.Url, access.UrlArgs);
 
             if (access.API.IsPost)

@@ -34,6 +34,19 @@ namespace DataStructureTB.Common
         internal static HttpAccessManager Inst { get; }
 
 
+        internal HttpResult HttpAccess(HttpAccess access)
+        {
+            HttpResponseMessage rsp = this.Requst.SendHttpRequst(access);
+            HttpResult result = this.Response.Receive(access, rsp);
+            return result;
+        }
+        internal HttpResult HttpAccessAsync(HttpAccess access)
+        {
+            Task<HttpResponseMessage> rsp = this.Requst.SendHttpRequstAsync(access);
+            HttpResult result = this.Response.Receive(access, rsp);
+            return result;
+        }
+
         internal HttpResult HttpAccess(string apiFieldName, params object[] args)
         {
             HttpAccess access = new HttpAccess();
