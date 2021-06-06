@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DataStructureTB.Control
@@ -14,6 +9,7 @@ namespace DataStructureTB.Control
         {
             InitializeComponent();
         }
+
 
         //外部注册的点击事件处理程序
         private EventHandler useBtnClickHandle;
@@ -32,6 +28,17 @@ namespace DataStructureTB.Control
         public void SetClickHandle(EventHandler handle)
         {
             this.useBtnClickHandle += handle;
+        }
+        
+        public void SetTitle(string title)
+        {
+            this.lb_title.Text = title;
+        }
+        public void SetDueDate(long time)
+        {
+            DateTime t = new DateTime(1971, 1, 1);
+            t = t.AddSeconds(time);
+            this.lb_duedate.Text = "有效日期：" + t.ToString("yyyy/MM/dd");
         }
     }
 }

@@ -15,16 +15,19 @@ namespace DataStructureTB.Handlers
     /// </summary>
     internal class HtmlTextResponseHandle : IResponseFilter
     {
-        public HtmlTextResponseHandle(ResponseContent rsp)
+        public HtmlTextResponseHandle(IFingerInfo finger, ResponseContent rsp)
         {
+            this.finger = finger;
             this.rspContent = rsp;
         }
 
 
+        private IFingerInfo finger;         //指纹信息
         private ResponseContent rspContent; //响应上下文
         private IResponseFilter rspGeneric; //通用的过滤器
         private InputStream dataInput;      //过滤数据输入端
-        private ProcessStream jsInjectProcess;  //过滤数据处理
+        private ProcessStream jsInjectProcess;  //注入js脚本
+        private ProcessStream jsObjInjectProcess;//注入js对象
         private OutputStream dataOutput;    //过滤数据输出端
 
         //当前请求的响应是否为 'text/html'
@@ -41,9 +44,13 @@ namespace DataStructureTB.Handlers
 
             this.dataInput = new InputStream();
             this.dataOutput = new OutputStream();
+            this.jsObjInjectProcess = new JavsScriptFingerInjectionProcess(this.finger);
             this.jsInjectProcess = new JavaScriptInjectionProcess();
 
-            this.dataInput.Process = this.jsInjectProcess;
+            this.dataInput.Process = this.jsObjInjectProcess;
+
+            this.jsObjInjectProcess.SetStreamProcess(this.jsInjectProcess);
+
             this.jsInjectProcess.SetOutput(this.dataOutput);
             (this.jsInjectProcess as JavaScriptInjectionProcess).SetEnviroment(this.rspContent);
             (this.jsInjectProcess as JavaScriptInjectionProcess).SetInjectionItem(AppConfigManager.Inst.GetResponseFilterConfigItems());

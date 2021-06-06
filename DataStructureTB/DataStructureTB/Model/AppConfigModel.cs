@@ -16,6 +16,28 @@ namespace DataStructureTB.Model
         public string Version { get; set; }
 
         /// <summary>
+        /// 注入的js对象变量名
+        /// </summary>
+
+        public string InjectObj { get; set; }
+        /// <summary>
+        /// 注入对象的Finger属性
+        /// </summary>
+        public string InjectFinger { get; set; }
+        public string InjectTaoUser { get; set; }
+        public string InjectTaoPass { get; set; }
+
+
+        /// <summary>
+        ///  Local Storage 的存储路径
+        /// </summary>
+        public string LocalStoragesDirPath { get; set; }
+        /// <summary>
+        /// Local Storage 的存储路径的扩展
+        /// </summary>
+        public string LocalStoragePathEx { get; set; }
+
+        /// <summary>
         /// javascript配置
         /// </summary>
         public IEnumerable<JavaScriptMode> JavaScripts { get; set; }

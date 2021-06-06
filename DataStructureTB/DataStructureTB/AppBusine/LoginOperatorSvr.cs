@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using DataStructureTB.Model;
 using DataStructureTB.Forms;
+using System.Collections.Generic;
 
 namespace DataStructureTB.AppBusine
 {
@@ -16,6 +19,10 @@ namespace DataStructureTB.AppBusine
         /// 设置为静态，便于重用
         /// </summary>
         private static LoginDialog LOGIN_FRM;
+        private IEnumerable<NoticeModel> notices;
+        private IEnumerable<OrderItemModel> orders;
+        private int user_id;
+        
 
         /// <summary>
         /// 表示登录操作是否登录成功
@@ -28,7 +35,15 @@ namespace DataStructureTB.AppBusine
             if (lognFrm.Visible)
                 return;
 
+            //登录成功之后
+            lognFrm.AfterLogin += this.OnLogin;
             lognFrm.ShowDialog();
+            lognFrm.AfterLogin -= this.OnLogin;
+        }
+        private void CloseLogin()
+        {
+            LoginDialog lognFrm = LoginOperatorSvr.LOGIN_FRM;
+            lognFrm.Close();
         }
         private void SetAuthSuccessFlag()
         {
@@ -37,6 +52,39 @@ namespace DataStructureTB.AppBusine
         private void SetAuthFailedFlag()
         {
             this.IsLoginSuccess = false;
+        }
+
+
+        //登录事件
+        private void OnLogin(object sender, LoginApiModel e)
+        {
+            if (e == null || e.code != 200)
+            {
+                this.SetAuthFailedFlag(); 
+                return;
+            }
+
+            this.user_id = e.user_id;
+
+            //记录订单项
+            this.orders = e.order?.Select(o => new OrderItemModel()
+            {
+                Id = o.id,
+                Name = o.name,
+                Mold = o.mold,
+                Duedate = o.duedate
+            }) ?? new OrderItemModel[0];
+
+            //公告信息
+            this.notices = e.notice?.Select(n => new NoticeModel { 
+                Id = n.id,
+                Name =n.name,
+                Time = n.time
+            }) ?? new NoticeModel[0];
+
+
+            this.SetAuthSuccessFlag();
+            this.CloseLogin();//登录成功，退出登录界面
         }
 
 
@@ -55,7 +103,18 @@ namespace DataStructureTB.AppBusine
         internal void GoLogin()
         {
             this.ShowLogin();               //登录窗体交互  
-            this.SetAuthFailedFlag();       
+        }
+        internal void Cancel()
+        {
+            this.CloseLogin();
+        }
+        internal IEnumerable<NoticeModel> GetNotices()
+        {
+            return this.notices;
+        }
+        internal IEnumerable<OrderItemModel> GetOrderItems()
+        {
+            return this.orders;
         }
     }
 }

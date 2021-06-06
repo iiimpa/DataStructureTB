@@ -45,19 +45,20 @@ namespace DataStructureTB.Common
                 throw ex;
 #endif
             }
+            return null;
         }
 
 
 
         internal HttpResult GetResult(HttpAccess access, HttpResponseMessage rspMsg)
         {
-            IHttpResultHandle resultHandle = this.GetResultHandle(access);
+            IHttpResultHandle resultHandle = access.ResultHandle != null ? access.ResultHandle : this.GetResultHandle(access);
             HttpResult result = new HttpResultHandler(resultHandle, rspMsg);
             return result;
         }
         internal HttpResult GetResult(HttpAccess access, Task<HttpResponseMessage> rspMsg)
         {
-            IHttpResultHandle resultHandle = this.GetResultHandle(access);
+            IHttpResultHandle resultHandle = access.ResultHandle != null ? access.ResultHandle : this.GetResultHandle(access);
             HttpResult result = new HttpResultHandler(resultHandle, rspMsg);
             return result;
         }

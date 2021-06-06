@@ -8,7 +8,6 @@ namespace DataStructureTB.Common.HttpAccessClients
         {
             try
             {
-
                 return httpResult.GetResult<T>();
             }
             catch (Exception ex)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DataStructureTB.Common
 {
@@ -21,5 +20,9 @@ namespace DataStructureTB.Common
         /// 接口信息
         /// </summary>
         internal UrlInfo API { get; set; }
+        /// <summary>
+        /// http 响应结果的处理
+        /// </summary>
+        internal IHttpResultHandle ResultHandle { get; set; }
     }
 }

@@ -23,9 +23,9 @@ namespace DataStructureTB.Common
 
 
         [HttpPost, UrlResultHandle(typeof(ObjectHttpResultHandle<LoginApiModel>)), Description("登录接口")]
-        internal const string Login = "http://apiyebushui.com/index/index/login.html";
+        internal const string Login = "http://api.yebushui.com/index/index/login.html";
 
-        [HttpPost, UrlResultHandle((typeof(StringHttpResultHandle))), Description("订单详情接口")]
+        [HttpPost, UrlResultHandle((typeof(ObjectHttpResultHandle<OrderItemDetails>))), Description("订单详情接口")]
         internal const string OrderDetails = "http://api.yebushui.com/index/index/order_info.html";
     }
 }

@@ -89,22 +89,22 @@ namespace DataStructureTB.Forms
             // txt_name
             // 
             this.txt_name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_name.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_name.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txt_name.Location = new System.Drawing.Point(97, 43);
             this.txt_name.Name = "txt_name";
             this.txt_name.PlaceholderText = "请输入用户名";
-            this.txt_name.Size = new System.Drawing.Size(242, 23);
+            this.txt_name.Size = new System.Drawing.Size(242, 22);
             this.txt_name.TabIndex = 2;
             // 
             // txt_pwd
             // 
             this.txt_pwd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_pwd.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_pwd.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txt_pwd.Location = new System.Drawing.Point(97, 88);
             this.txt_pwd.Name = "txt_pwd";
             this.txt_pwd.PasswordChar = '*';
             this.txt_pwd.PlaceholderText = "请输入密码";
-            this.txt_pwd.Size = new System.Drawing.Size(242, 23);
+            this.txt_pwd.Size = new System.Drawing.Size(242, 22);
             this.txt_pwd.TabIndex = 3;
             // 
             // btn_logn

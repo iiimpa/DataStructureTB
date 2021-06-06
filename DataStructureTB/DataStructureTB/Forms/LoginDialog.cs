@@ -78,7 +78,8 @@ namespace DataStructureTB.Forms
             string user_name = this.GetUserName();
             string user_pass = this.GetUserPawd();
 
-            ControlBusyState mBusy = new ControlBusyState(this);
+            MultiBusyControls mBusys = new MultiBusyControls(this, this.txt_name, this.txt_pwd);
+
             Task.Factory.StartNew(() => new LoginHttpAccess().LoginUser(user_name, user_pass))
                         .ContinueWith(tsk => {
                             try
@@ -93,7 +94,7 @@ namespace DataStructureTB.Forms
                             }
                             finally
                             {
-                                mBusy.Dispose();
+                                mBusys.Dispose();
                                 this.SetLoginBtnEnable(true);
                             }
                         });
