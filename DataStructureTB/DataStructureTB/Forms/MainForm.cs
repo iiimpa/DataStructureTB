@@ -87,14 +87,15 @@ namespace DataStructureTB.Forms
             RequestContextSettings rspContextSettings = new RequestContextSettings();
             rspContextSettings.CachePath = createInfo.LocalStoragPath;
 
-            ChromeDriver chrome = new ChromeDriver(createInfo.OrderDetails.order_url_url, new RequestContext(rspContextSettings));
+            WebBrowserUC chrome = new WebBrowserUC(createInfo.OrderDetails.order_url_url, new RequestContext(rspContextSettings));
             //控件绑定指纹等信息
-            chrome.SetBindInfo(createInfo.OrderDetails.order_cookie_id, createInfo.OrderDetails.order_cookie, createInfo.OrderDetails.order_fingerprint);
-            chrome.CookieId = createInfo.OrderDetails.order_cookie_id;
-            chrome.Cookie = createInfo.OrderDetails.order_cookie;
-            chrome.Cookie = createInfo.OrderDetails.order_fingerprint;
-            chrome.TaoUser = createInfo.OrderDetails.order_tao_user;
-            chrome.TaoPass = createInfo.OrderDetails.order_tao_pass;
+            chrome.Chrome.SetBindInfo(createInfo.OrderDetails.order_cookie_id, createInfo.OrderDetails.order_cookie, createInfo.OrderDetails.order_fingerprint);
+            chrome.Chrome.CookieId = createInfo.OrderDetails.order_cookie_id;
+            chrome.Chrome.Cookie = createInfo.OrderDetails.order_cookie;
+            chrome.Chrome.Cookie = createInfo.OrderDetails.order_fingerprint;
+            chrome.Chrome.TaoUser = createInfo.OrderDetails.order_tao_user;
+            chrome.Chrome.TaoPass = createInfo.OrderDetails.order_tao_pass;
+            chrome.Dock = DockStyle.Fill;
 
             TabPage webPage = new TabPage();
             webPage.Name = createInfo.OrderId.ToString();
