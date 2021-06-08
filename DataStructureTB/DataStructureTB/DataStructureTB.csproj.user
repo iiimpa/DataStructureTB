@@ -8,9 +8,6 @@
     <Compile Update="Control\ChromeDriver.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="Control\ChromeDriver.init.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Update="Control\Navbar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -18,6 +15,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Control\OrderListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Control\TabControlUC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Control\WebBrowserUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Forms\LoginDialog.cs">
