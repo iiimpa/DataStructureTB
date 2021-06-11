@@ -9,7 +9,7 @@ namespace DataStructureTB.Model
     /// </summary>
     internal class AppConfigModel
     {
-        public AppConfigModel() 
+        public AppConfigModel()
         { }
 
         public string Discription { get; set; }
@@ -26,6 +26,7 @@ namespace DataStructureTB.Model
         public string InjectFinger { get; set; }
         public string InjectTaoUser { get; set; }
         public string InjectTaoPass { get; set; }
+        public string InjectRequestParams { get; set; }
 
 
         /// <summary>
@@ -41,6 +42,8 @@ namespace DataStructureTB.Model
         /// javascript配置
         /// </summary>
         public IEnumerable<JavaScriptMode> JavaScripts { get; set; }
+
+        public IEnumerable<RequestParamsCaptureConfigItem> RequestParamsCaptures { get; set; }
     }
 
 
@@ -49,7 +52,7 @@ namespace DataStructureTB.Model
     /// </summary>
     internal class JavaScriptMode
     {
-        public JavaScriptMode() 
+        public JavaScriptMode()
         { }
 
         /// <summary>

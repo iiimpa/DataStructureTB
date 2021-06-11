@@ -1,4 +1,5 @@
 ﻿using CefSharp;
+using DataStructureTB.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,8 +13,15 @@ namespace DataStructureTB.Handlers
     {
         protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
         {
-            //return base.GetResourceRequestHandler(chromiumWebBrowser, browser, frame, request, isNavigation, isDownload, requestInitiator, ref disableDefaultHandling);
+            var JavaScriptObject = chromiumWebBrowser as IJavaScriptObject;
+            var requestParamsCapture = new RequestParamsCapture(JavaScriptObject.RequestParams, request);
+            requestParamsCapture.SetInjectionItem(AppConfigManager.Inst.GetRequestParamsCaptureConfigItem());
+            requestParamsCapture.GetAndAddParams();
+            if (requestParamsCapture.IsTargetSite())
+                chromiumWebBrowser.ExecuteScriptAsync(requestParamsCapture.GetInjectJavaScriptObject());
+
             return new ResourceRequestHandler();
         }
+
     }
 }

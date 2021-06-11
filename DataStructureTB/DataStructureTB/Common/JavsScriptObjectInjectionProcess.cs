@@ -1,4 +1,5 @@
 ﻿using DataStructureTB.Handlers;
+using Newtonsoft.Json;
 using System.Text;
 
 namespace DataStructureTB.Common
@@ -6,17 +7,17 @@ namespace DataStructureTB.Common
     /// <summary>
     /// 脚本指纹注入处理
     /// </summary>
-    internal class JavsScriptFingerInjectionProcess : ProcessStream
+    internal class JavsScriptObjectInjectionProcess : ProcessStream
     {
-        internal JavsScriptFingerInjectionProcess(IFingerInfo finger)
+        internal JavsScriptObjectInjectionProcess(IJavaScriptObject JavaScriptObject)
         {
-            this.finger = finger;
+            this.JavaScriptObject = JavaScriptObject;
             this.scriptTagBuild = new HtmlTagBuilder();
             this.scriptObjBuild = new JavaScriptObjectBuilder();
             this.SetProcess(this.InjectionFinger);
         }
 
-        private IFingerInfo finger;                     //指纹
+        private IJavaScriptObject JavaScriptObject;                     //指纹
         private HtmlTagBuilder scriptTagBuild;          //组装script标签
         private JavaScriptObjectBuilder scriptObjBuild;  //组装js对象
         private bool isInjected = false;                //是否已经注入过了
@@ -25,7 +26,7 @@ namespace DataStructureTB.Common
         private byte[] InjectionFinger(byte[] html)
         {
             //不能重复注入
-            if (this.isInjected || this.finger == null)
+            if (this.isInjected || this.JavaScriptObject == null)
                 return html;
 
             string script;
@@ -38,10 +39,11 @@ namespace DataStructureTB.Common
                 //构造注入对象
                 StringBuilder injectObj = new StringBuilder("", 2000);
                 injectObj.AppendLine("var " + AppConfigManager.Inst.AppConfig.InjectObj + " = {}");
-                injectObj.AppendLine($"{AppConfigManager.Inst.AppConfig.InjectFinger } = {this.finger.Fingerprint};");
-                injectObj.AppendLine($"{AppConfigManager.Inst.AppConfig.InjectTaoUser} = \"{this.finger.TaoUser}\";");
-                injectObj.AppendLine($"{AppConfigManager.Inst.AppConfig.InjectTaoPass} = \"{this.finger.TaoPass}\";");
+                injectObj.AppendLine($"{AppConfigManager.Inst.AppConfig.InjectFinger } = {this.JavaScriptObject.Fingerprint};");
+                injectObj.AppendLine($"{AppConfigManager.Inst.AppConfig.InjectTaoUser} = \"{this.JavaScriptObject.TaoUser}\";");
+                injectObj.AppendLine($"{AppConfigManager.Inst.AppConfig.InjectTaoPass} = \"{this.JavaScriptObject.TaoPass}\";");
 
+                injectObj.AppendLine(AppConfigManager.Inst.AppConfig.InjectRequestParams+" = {};");
 
                 this.scriptTagBuild.BeginTag("script");
                 this.scriptTagBuild.SetAttribute("type", "text/javascript");

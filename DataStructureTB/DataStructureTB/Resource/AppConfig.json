@@ -7,14 +7,46 @@
   "InjectFinger": "apiInject.finger",
   "InjectTaoUser": "apiInject.user",
   "InjectTaoPass": "apiInject.pass",
+  "InjectRequestParams": "apiInject.requestParams",
   "JavaScripts": [
     {
       "InjectionPos": "</head>",
       "InjectionOn": "left",
-      "HandleUrl": "https://www.baidu.com",
+      "HandleUrl": "*",
       "Src": "",
-      "Path": "./Resource/test.js",
+      "Path": "./Resource/fingerprint.js",
       "ScriptContent": ""
+    },
+    {
+      "InjectionPos": "</body>",
+      "InjectionOn": "left",
+      "HandleUrl": "^((https|http|ftp|rtsp|mms)?:\\/\\/login.taobao.com/member/login.jhtml)[^\\s]+",
+      "Src": "",
+      "Path": "./Resource/loginitem.js",
+      "ScriptContent": ""
+    },
+    {
+      "InjectionPos": "</body>",
+      "InjectionOn": "left",
+      "HandleUrl": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/mq/overview)[^\\s]+",
+      "Src": "https://localhost:44302/wwwroot/chunk-vendors.0a2b7c16.js",
+      "Path": "",
+      "ScriptContent": ""
+    },
+    {
+      "InjectionPos": "</body>",
+      "InjectionOn": "left",
+      "HandleUrl": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/mq/overview)[^\\s]+",
+      "Src": "https://localhost:44302/wwwroot/app.f016b558.js",
+      "Path": "",
+      "ScriptContent": ""
+    }
+  ],
+  "RequestParamsCaptures": [
+    {
+      "Url": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/mq/supply/mkt/overview.json)[^\\s]+",
+      "Fields": [ "Transit-Id", "Onetrace-Card-Id", "sycm-referer" ],
+      "Name": "Request_overview"
     }
   ]
 }

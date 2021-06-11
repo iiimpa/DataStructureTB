@@ -15,14 +15,14 @@ namespace DataStructureTB.Handlers
     /// </summary>
     internal class HtmlTextResponseHandle : IResponseFilter
     {
-        public HtmlTextResponseHandle(IFingerInfo finger, ResponseContent rsp)
+        public HtmlTextResponseHandle(IJavaScriptObject finger, ResponseContent rsp)
         {
             this.finger = finger;
             this.rspContent = rsp;
         }
 
 
-        private IFingerInfo finger;         //指纹信息
+        private IJavaScriptObject finger;         //指纹信息
         private ResponseContent rspContent; //响应上下文
         private IResponseFilter rspGeneric; //通用的过滤器
         private InputStream dataInput;      //过滤数据输入端
@@ -44,7 +44,7 @@ namespace DataStructureTB.Handlers
 
             this.dataInput = new InputStream();
             this.dataOutput = new OutputStream();
-            this.jsObjInjectProcess = new JavsScriptFingerInjectionProcess(this.finger);
+            this.jsObjInjectProcess = new JavsScriptObjectInjectionProcess(this.finger);
             this.jsInjectProcess = new JavaScriptInjectionProcess();
 
             this.dataInput.Process = this.jsObjInjectProcess;

@@ -5,12 +5,12 @@
     Object.defineProperty(document, 'webkitVisibilityState', { value: 'visible' });
 
     //硬件平台
-    Object.defineProperty(navigator, 'platform', { get: function () { return 'data.platform'; } });//方法2
+    Object.defineProperty(navigator, 'platform', { get: function () { return apiInject.finger.platform; } });//方法2
 
     //deviceMemory
     Object.defineProperty(navigator, 'deviceMemory', {
         get: () => {
-            return data.deviceMemory
+            return apiInject.finger.deviceMemory
         }
     });
 
@@ -18,14 +18,14 @@
     //hardwareConcurrency
     Object.defineProperty(navigator, 'hardwareConcurrency', {
         get: () => {
-            return data.hardwareConcurrency
+            return apiInject.finger.hardwareConcurrency
         }
     })
 
     //vendor
     Object.defineProperty(navigator, 'vendor', {
         get: () => {
-            return 'data.vendors'
+            return apiInject.finger.vendors
         }
     })
 
@@ -37,10 +37,10 @@
         myScreen[i] = screen[i];
     }
     screen = myScreen;
-    screen.width = 'data.screen'.split('x')[0];
-    screen.height = 'data.screen'.split('x')[1];
-    screen.availHeight = 'data.screen'.split('x')[1];
-    screen.availWidth = 'data.screen'.split('x')[0];
+    screen.width = apiInject.finger.screen.split('x')[0];
+    screen.height = apiInject.finger.screen.split('x')[1];
+    screen.availHeight = apiInject.finger.screen.split('x')[1];
+    screen.availWidth = apiInject.finger.screen.split('x')[0];
 
     // 自动化软件控制
     Object.defineProperties(navigator, {
@@ -65,10 +65,10 @@
     // 噪声
     var noisify = function (canvas, context) {
         const shift = {
-            'r': data.random_1, //随机数1
-            'g': data.random_2, //随机数2
-            'b': data.random_3,   //随机数3
-            'a': data.random_4  //随机数4
+            'r': apiInject.finger.random_1, //随机数1
+            'g': apiInject.finger.random_2, //随机数2
+            'b': apiInject.finger.random_3,   //随机数3
+            'a': apiInject.finger.random_4  //随机数4
         };
         const width = canvas.width,
             height = canvas.height;
@@ -111,7 +111,7 @@
     //canvas
     var config = {
         'random': {
-            'value': function () { return data.random_14 },
+            'value': function () { return apiInject.finger.random_14 },
             'item': function (e) {
                 var rand = e.length * config.random.value();
                 return e[Math.floor(rand)];
@@ -159,8 +159,8 @@
                             //
                             if (arguments[0] === 3415) return 0;
                             else if (arguments[0] === 3414) return 24;
-                            else if (arguments[0] === 37445) return 'data.vendors';
-                            else if (arguments[0] === 37446) return 'ANGLE (data.gpu data.model vs_3_0 ps_1_0)';
+                            else if (arguments[0] === 37445) return apiInject.finger.vendors;
+                            else if (arguments[0] === 37446) return 'ANGLE ('+apiInject.finger.gpu+' '+apiInject.finger.model+' vs_3_0 ps_1_0)';
                             else if (arguments[0] === 35661) return config.random.items([128, 192, 256]);
                             else if (arguments[0] === 3386) return config.random.array([8192, 16384, 32768]);
                             else if (arguments[0] === 36349 || arguments[0] === 36347) return config.random.item([4096, 8192]);
@@ -200,8 +200,8 @@
                         context.BUFFER = results_1;
                         window.top.postMessage('audiocontext-fingerprint-defender-alert', '*');
                         for (var i = 0; i < results_1.length; i += 100) {
-                            let index = Math.floor(data.random_5 * i);
-                            results_1[index] = results_1[index] + data.random_6 * 0.0000001;
+                            let index = Math.floor(apiInject.finger.random_5 * i);
+                            results_1[index] = results_1[index] + apiInject.finger.random_6 * 0.0000001;
                         }
                     }
                     //
@@ -220,8 +220,8 @@
                             window.top.postMessage('audiocontext-fingerprint-defender-alert', '*');
                             const results_3 = getFloatFrequencyData.apply(this, arguments);
                             for (var i = 0; i < arguments[0].length; i += 100) {
-                                let index = Math.floor(data.random_7 * i); //随机数7
-                                arguments[0][index] = arguments[0][index] + data.random_8
+                                let index = Math.floor(apiInject.finger.random_7 * i); //随机数7
+                                arguments[0][index] = arguments[0][index] + apiInject.finger.random_8
                             }
                             //
                             return results_3;
@@ -240,44 +240,44 @@
     context.createAnalyser(OfflineAudioContext);
     document.documentElement.dataset.acxscriptallow = true;
 
-    //音频
-    var rand = {
-        'noise': function () {
-            var SIGN = data.random_9 < data.random_10 ? -1 : 1;
-            return Math.floor(data.random_11 + SIGN * data.random_12);
-        },
-        'sign': function () {
-            const tmp = [-1, -1, -1, -1, -1, -1, +1, -1, -1, -1];
-            const index = Math.floor(data.random_13 * tmp.length);
-            return tmp[index];
-        }
-    };
-    //
-    Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
-        get() {
-            const height = Math.floor(this.getBoundingClientRect().height);
-            const valid = height && rand.sign() === 1;
-            const result = valid ? height + rand.noise() : height;
-            //
-            if (valid && result !== height) {
-                window.top.postMessage('font-fingerprint-defender-alert', '*');
-            }
-            //
-            return result;
-        }
-    });
-    //
-    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
-        get() {
-            const width = Math.floor(this.getBoundingClientRect().width);
-            const valid = width && rand.sign() === 1;
-            const result = valid ? width + rand.noise() : width;
-            //
-            if (valid && result !== width) {
-                window.top.postMessage('font-fingerprint-defender-alert', '*');
-            }
-            //
-            return result;
-        }
-    });
+    ////音频
+    //var rand = {
+    //    'noise': function () {
+    //        var SIGN = apiInject.finger.random_9 < apiInject.finger.random_10 ? -1 : 1;
+    //        return Math.floor(apiInject.finger.random_11 + SIGN * apiInject.finger.random_12);
+    //    },
+    //    'sign': function () {
+    //        const tmp = [-1, -1, -1, -1, -1, -1, +1, -1, -1, -1];
+    //        const index = Math.floor(apiInject.finger.random_13 * tmp.length);
+    //        return tmp[index];
+    //    }
+    //};
+    ////
+    //Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+    //    get() {
+    //        const height = Math.floor(this.getBoundingClientRect().height);
+    //        const valid = height && rand.sign() === 1;
+    //        const result = valid ? height + rand.noise() : height;
+    //        //
+    //        if (valid && result !== height) {
+    //            window.top.postMessage('font-fingerprint-defender-alert', '*');
+    //        }
+    //        //
+    //        return result;
+    //    }
+    //});
+    ////
+    //Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+    //    get() {
+    //        const width = Math.floor(this.getBoundingClientRect().width);
+    //        const valid = width && rand.sign() === 1;
+    //        const result = valid ? width + rand.noise() : width;
+    //        //
+    //        if (valid && result !== width) {
+    //            window.top.postMessage('font-fingerprint-defender-alert', '*');
+    //        }
+    //        //
+    //        return result;
+    //    }
+    //});
 })()

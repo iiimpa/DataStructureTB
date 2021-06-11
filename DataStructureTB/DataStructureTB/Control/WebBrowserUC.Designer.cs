@@ -45,6 +45,7 @@ namespace DataStructureTB.Control
             // tlsp_chormeTool
             // 
             this.tlsp_chormeTool.CanOverflow = false;
+            this.tlsp_chormeTool.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tlsp_chormeTool.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tls_back,
             this.tls_forward,
@@ -55,7 +56,7 @@ namespace DataStructureTB.Control
             this.tlsp_chormeTool.Location = new System.Drawing.Point(0, 0);
             this.tlsp_chormeTool.Name = "tlsp_chormeTool";
             this.tlsp_chormeTool.ShowItemToolTips = false;
-            this.tlsp_chormeTool.Size = new System.Drawing.Size(570, 25);
+            this.tlsp_chormeTool.Size = new System.Drawing.Size(733, 27);
             this.tlsp_chormeTool.TabIndex = 1;
             this.tlsp_chormeTool.Text = "toolStrip1";
             // 
@@ -65,7 +66,7 @@ namespace DataStructureTB.Control
             this.tls_back.Image = ((System.Drawing.Image)(resources.GetObject("tls_back.Image")));
             this.tls_back.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tls_back.Name = "tls_back";
-            this.tls_back.Size = new System.Drawing.Size(36, 22);
+            this.tls_back.Size = new System.Drawing.Size(43, 24);
             this.tls_back.Text = "后退";
             this.tls_back.Click += new System.EventHandler(this.tls_back_Click1);
             // 
@@ -75,14 +76,14 @@ namespace DataStructureTB.Control
             this.tls_forward.Image = ((System.Drawing.Image)(resources.GetObject("tls_forward.Image")));
             this.tls_forward.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tls_forward.Name = "tls_forward";
-            this.tls_forward.Size = new System.Drawing.Size(36, 22);
+            this.tls_forward.Size = new System.Drawing.Size(43, 24);
             this.tls_forward.Text = "前进";
             this.tls_forward.Click += new System.EventHandler(this.tls_forward_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tls_refresh
             // 
@@ -90,28 +91,29 @@ namespace DataStructureTB.Control
             this.tls_refresh.Image = ((System.Drawing.Image)(resources.GetObject("tls_refresh.Image")));
             this.tls_refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tls_refresh.Name = "tls_refresh";
-            this.tls_refresh.Size = new System.Drawing.Size(36, 22);
+            this.tls_refresh.Size = new System.Drawing.Size(43, 24);
             this.tls_refresh.Text = "刷新";
             this.tls_refresh.Click += new System.EventHandler(this.tls_refresh_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // tls_lbl_href
             // 
             this.tls_lbl_href.Name = "tls_lbl_href";
-            this.tls_lbl_href.Size = new System.Drawing.Size(44, 22);
+            this.tls_lbl_href.Size = new System.Drawing.Size(54, 24);
             this.tls_lbl_href.Text = "地址：";
             // 
             // panel_browerContainer
             // 
             this.panel_browerContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_browerContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_browerContainer.Location = new System.Drawing.Point(0, 25);
+            this.panel_browerContainer.Location = new System.Drawing.Point(0, 27);
+            this.panel_browerContainer.Margin = new System.Windows.Forms.Padding(4);
             this.panel_browerContainer.Name = "panel_browerContainer";
-            this.panel_browerContainer.Size = new System.Drawing.Size(570, 249);
+            this.panel_browerContainer.Size = new System.Drawing.Size(733, 295);
             this.panel_browerContainer.TabIndex = 2;
             // 
             // txt_href
@@ -119,21 +121,23 @@ namespace DataStructureTB.Control
             this.txt_href.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_href.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_href.Location = new System.Drawing.Point(167, 3);
+            this.txt_href.Location = new System.Drawing.Point(215, 4);
+            this.txt_href.Margin = new System.Windows.Forms.Padding(4);
             this.txt_href.Name = "txt_href";
-            this.txt_href.ReadOnly = true;
-            this.txt_href.Size = new System.Drawing.Size(399, 16);
+            this.txt_href.Size = new System.Drawing.Size(513, 20);
             this.txt_href.TabIndex = 3;
+            this.txt_href.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_href_KeyPress);
             // 
             // WebBrowserUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txt_href);
             this.Controls.Add(this.panel_browerContainer);
             this.Controls.Add(this.tlsp_chormeTool);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "WebBrowserUC";
-            this.Size = new System.Drawing.Size(570, 274);
+            this.Size = new System.Drawing.Size(733, 322);
             this.tlsp_chormeTool.ResumeLayout(false);
             this.tlsp_chormeTool.PerformLayout();
             this.ResumeLayout(false);

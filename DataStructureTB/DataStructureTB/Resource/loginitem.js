@@ -1,0 +1,11 @@
+﻿document.getElementById('header').style.display = 'none';
+document.getElementsByClassName('footer')[0].style.display = 'none';
+document.getElementsByClassName('sms-login-tab-item')[0].style.display = 'none';
+document.getElementsByClassName('sms-login-tab-item')[0].style.display = 'none';
+document.getElementsByClassName('iconfont icon-qrcode')[0].style.display = 'none';
+document.getElementsByClassName('login-tip')[0].style.display = 'none';
+document.getElementsByClassName('login-blocks sns-login-links')[0].style.display = 'none';
+document.getElementsByClassName('login-blocks login-links')[0].style.display = 'none';
+document.getElementById('fm-login-id').type = 'password';
+document.getElementById('fm-login-id').value = '都英数码专营店:伟';
+document.getElementById('fm-login-password').value = 'a123456789';
