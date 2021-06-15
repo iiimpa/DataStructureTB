@@ -42,7 +42,6 @@ namespace DataStructureTB.Common
                 injectObj.AppendLine($"{AppConfigManager.Inst.AppConfig.InjectFinger } = {this.JavaScriptObject.Fingerprint};");
                 injectObj.AppendLine($"{AppConfigManager.Inst.AppConfig.InjectTaoUser} = \"{this.JavaScriptObject.TaoUser}\";");
                 injectObj.AppendLine($"{AppConfigManager.Inst.AppConfig.InjectTaoPass} = \"{this.JavaScriptObject.TaoPass}\";");
-
                 injectObj.AppendLine(AppConfigManager.Inst.AppConfig.InjectRequestParams+" = {};");
 
                 this.scriptTagBuild.BeginTag("script");
@@ -53,6 +52,18 @@ namespace DataStructureTB.Common
                 script = this.scriptTagBuild.Build();
                 injectPos += "<head>".Length;
                 result = result.Insert(injectPos, script);
+            }
+
+            //注入扩展标签
+            string extension;
+            injectPos = result.IndexOf("<div");
+            if (injectPos >= 0)
+            {
+                this.scriptTagBuild.BeginTag("div");
+                this.scriptTagBuild.SetAttribute("id", "Extensions");
+                this.scriptTagBuild.EndTag();
+                extension = this.scriptTagBuild.Build();
+                result = result.Insert(injectPos, extension);
                 this.isInjected = true;
             }
 

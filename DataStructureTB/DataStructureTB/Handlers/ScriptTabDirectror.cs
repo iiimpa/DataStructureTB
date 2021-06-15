@@ -14,12 +14,21 @@ namespace DataStructureTB.Handlers
 
         internal void Construct(ResponseFilterConfigItem jsCfg, HtmlTagBuilder build)
         {
-            build.BeginTag("script");
-            build.SetAttribute("type", "text/javascript");
+            build.BeginTag(jsCfg.Tag);
+            if (jsCfg.Tag == "script")
+                build.SetAttribute("type", "text/javascript");
+            else if (jsCfg.Tag == "link")
+                build.SetAttribute("rel", "stylesheet");
 
             //设置src
             if (!string.IsNullOrWhiteSpace(jsCfg.Src))
-                build.SetAttribute("src", jsCfg.Src);
+            {
+                if (jsCfg.Tag == "script")
+                    build.SetAttribute("src", jsCfg.Src);
+                else if (jsCfg.Tag == "link")
+                    build.SetAttribute("href", jsCfg.Src);
+            }
+
 
             //设置js文件内容
             if (System.IO.File.Exists(jsCfg.Path))

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace DataStructureTB.Handlers
 {
@@ -78,7 +79,12 @@ namespace DataStructureTB.Handlers
                 };
                 foreach (var field in requestParamsCaptureConfigItem.Fields)
                 {
-                    requestParam.fields.Add(field.Replace("-", "_"), this._request.Headers[field]?.Replace("\"", "\\\"") ?? default(string));
+                    Uri uri = new Uri(this._request.Url);
+                    var collections = HttpUtility.ParseQueryString(uri.Query);
+                    if (this._request.Headers[field] == null || this._request.Headers[field] == "")
+                        requestParam.fields.Add(field.Replace("-", "_"), collections[field]);
+                    else
+                        requestParam.fields.Add(field.Replace("-", "_"), this._request.Headers[field]?.Replace("\"", "\\\"") ?? default(string));
                 }
                 if (this._requestParams.Contains(requestParam))
                     continue;

@@ -49,6 +49,7 @@ namespace DataStructureTB.Common
                     HandleUrl = js.HandleUrl,
                     Src = js.Src,
                     Path = js.Path,
+                    Tag = js.Tag,
                     ScriptContent = js.ScriptContent
                 };
             }

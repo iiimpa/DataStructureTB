@@ -40,7 +40,7 @@ namespace DataStructureTB.Handlers
 
         public bool InitFilter()
         {
-            this.rspGeneric = new StreamResponseFilter(new MemoryStream(1024 * 64));
+            this.rspGeneric = new StreamResponseFilter(new MemoryStream(1024 * 256));
 
             this.dataInput = new InputStream();
             this.dataOutput = new OutputStream();

@@ -20,6 +20,7 @@ namespace DataStructureTB.Control
             base.RequestHandler = new RequestHandler();
             base.LifeSpanHandler = new LifeSpanHandler();
             base.KeyboardHandler = new KeyboardHandler();
+            base.DownloadHandler = new DownloadHandler();
             InitializeComponent();
         }
         public ChromeDriver(CefSharp.Web.HtmlString html, CefSharp.IRequestContext requestContext = null) : base(html, requestContext)

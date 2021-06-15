@@ -68,6 +68,10 @@ namespace DataStructureTB.Model
         /// </summary>
         public string HandleUrl { get; set; }
         /// <summary>
+        /// 注入标签
+        /// </summary>
+        public string Tag { get; set; }
+        /// <summary>
         /// 该脚本的服务器地址
         /// </summary>
         public string Src { get; set; }

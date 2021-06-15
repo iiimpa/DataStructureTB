@@ -5,7 +5,7 @@ using System.Text;
 namespace DataStructureTB.Common
 {
     /// <summary>
-    /// js对象狗构造
+    /// js对象构造
     /// </summary>
     internal class JavaScriptObjectBuilder
     {
