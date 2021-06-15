@@ -30,6 +30,10 @@ namespace DataStructureTB.Model
         /// </summary>
         public string Src { get; set; }
         /// <summary>
+        /// 注入标签
+        /// </summary>
+        public string Tag { get; set; }
+        /// <summary>
         /// 该脚本的本地路径地址
         /// </summary>
         public string Path { get; set; }

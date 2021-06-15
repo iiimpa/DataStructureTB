@@ -98,6 +98,7 @@ namespace DataStructureTB.Forms
             this.uc_orderlst.Margin = new System.Windows.Forms.Padding(2);
             this.uc_orderlst.Name = "uc_orderlst";
             this.uc_orderlst.Padding = new System.Windows.Forms.Padding(5);
+            this.uc_orderlst.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.uc_orderlst.Size = new System.Drawing.Size(485, 220);
             this.uc_orderlst.TabIndex = 0;
             // 
@@ -133,11 +134,11 @@ namespace DataStructureTB.Forms
             this.tabs.Size = new System.Drawing.Size(780, 481);
             this.tabs.TabIndex = 1;
             // 
-            // tabPage1
+            // tab_home
             // 
             this.tab_home.Controls.Add(this.split_LeftWithRight);
             this.tab_home.Location = new System.Drawing.Point(4, 30);
-            this.tab_home.Name = "tabPage1";
+            this.tab_home.Name = "tab_home";
             this.tab_home.Padding = new System.Windows.Forms.Padding(3);
             this.tab_home.Size = new System.Drawing.Size(772, 447);
             this.tab_home.TabIndex = 0;

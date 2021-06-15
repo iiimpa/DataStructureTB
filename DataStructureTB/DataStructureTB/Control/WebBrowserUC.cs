@@ -31,7 +31,10 @@ namespace DataStructureTB.Control
 
         private void chorme_AddressChanged(object sender, AddressChangedEventArgs e)
         {
-            this.txt_href.Text = this.Chrome.Address;
+            this.txt_href.BeginInvoke((Action)(() =>
+            {
+                this.txt_href.Text = this.Chrome.Address;
+            }));
         }
 
 
@@ -51,11 +54,16 @@ namespace DataStructureTB.Control
         }
         private void tls_refresh_Click(object sender, EventArgs e)
         {
-            if(this.Chrome.IsDisposed || !this.Chrome.IsLoading || this.Chrome.GetBrowser().IsDisposed)
+            if (this.Chrome.IsDisposed || !this.Chrome.IsLoading || this.Chrome.GetBrowser().IsDisposed)
             {
                 this.Chrome.GetBrowser().Reload();
             }
         }
 
+        private void txt_href_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+                this.Chrome.Load(this.txt_href.Text);
+        }
     }
 }

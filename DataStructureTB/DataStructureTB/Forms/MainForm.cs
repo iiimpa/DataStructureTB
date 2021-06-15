@@ -57,7 +57,7 @@ namespace DataStructureTB.Forms
         }
         private TabPage FindTabpage(string name)
         {
-            foreach(TabPage page in this.tabs.TabPages)
+            foreach (TabPage page in this.tabs.TabPages)
             {
                 if (page.Name == name)
                     return page;
@@ -85,6 +85,8 @@ namespace DataStructureTB.Forms
             }
 
             RequestContextSettings rspContextSettings = new RequestContextSettings();
+
+            //rspContextSettings.CachePath = "D:\\Evan\\新建文件夹\\DataStructureTB\\DataStructureTB\\DataStructureTB\\bin\\Debug\\netcoreapp3.1\\Users Data\\Default";
             rspContextSettings.CachePath = createInfo.LocalStoragPath;
 
             WebBrowserUC chrome = new WebBrowserUC(createInfo.OrderDetails.order_url_url, new RequestContext(rspContextSettings));
@@ -107,12 +109,12 @@ namespace DataStructureTB.Forms
             this.tabs.BeginInvoke((Action<TabPage>)this.SelectTabpage, webPage);
         }
 
-        
+
 
         //获取订单详情之后，创建订单的web控件
         private void OnAfterGetOrderItem(CreateOrderItemWebInfo createInfo)
         {
-            if(this.InvokeRequired)
+            if (this.InvokeRequired)
             {
                 this.BeginInvoke((Action<CreateOrderItemWebInfo>)this.OnAfterGetOrderItem, createInfo);
                 return;
@@ -139,7 +141,7 @@ namespace DataStructureTB.Forms
             }
 
             TabPage exists = this.FindTabpage(e.Order.Id.ToString());
-            if(exists != null)
+            if (exists != null)
             {
                 this.SelectTabpage(exists);
                 return;
@@ -163,7 +165,7 @@ namespace DataStructureTB.Forms
                         .ContinueWith(tsk => mBusys.Dispose())                          //解除忙碌状态
                         .ContinueWith(tsk => this.PopOrder(orderId))                    //取消当前的正在处理的订单
                         .ConfigureAwait(false);
-        }       
+        }
 
 
 

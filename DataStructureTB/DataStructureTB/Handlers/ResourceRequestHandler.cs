@@ -11,9 +11,9 @@ namespace DataStructureTB.Handlers
     {
         protected override IResponseFilter GetResourceResponseFilter(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IResponse response)
         {
-            if (!(chromiumWebBrowser is IFingerInfo))
+            if (!(chromiumWebBrowser is IJavaScriptObject))
                 return base.GetResourceResponseFilter(chromiumWebBrowser, browser, frame, request, response);
-            
+
             ResponseContent rspCnt = new ResponseContent();
             rspCnt.Url = request.Url;
             rspCnt.Charset = response.Charset;
@@ -23,7 +23,7 @@ namespace DataStructureTB.Handlers
             rspCnt.StatusCode = response.StatusCode;
             rspCnt.StatusText = response.StatusText;
 
-            IFingerInfo finger = chromiumWebBrowser as IFingerInfo;
+            IJavaScriptObject finger = chromiumWebBrowser as IJavaScriptObject;
 
             return new HtmlTextResponseHandle(finger, rspCnt);
         }

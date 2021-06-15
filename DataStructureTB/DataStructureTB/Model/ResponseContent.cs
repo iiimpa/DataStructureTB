@@ -18,6 +18,5 @@ namespace DataStructureTB.Model
         internal CefErrorCode ErrorCode { get; set; }
         internal int StatusCode { get; set; }
         internal string StatusText { get; set; }
-
     }
 }

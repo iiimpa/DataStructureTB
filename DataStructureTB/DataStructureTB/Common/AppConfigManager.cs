@@ -16,7 +16,7 @@ namespace DataStructureTB.Common
             AppConfigManager.Inst = new AppConfigManager();
         }
 
-        private AppConfigManager() 
+        private AppConfigManager()
         {
             string appConfigContent = File.ReadAllText("./Resource/AppConfig.json");
             this.AppConfig = string.IsNullOrWhiteSpace(appConfigContent) ?
@@ -39,17 +39,33 @@ namespace DataStructureTB.Common
         {
             if (this.AppConfig?.JavaScripts == null)
                 yield break;
-            
-            foreach(JavaScriptMode js in this.AppConfig.JavaScripts)
+
+            foreach (JavaScriptMode js in this.AppConfig.JavaScripts)
             {
-                yield return new ResponseFilterConfigItem() { 
+                yield return new ResponseFilterConfigItem()
+                {
                     InjectionPos = js.InjectionPos,
                     InjectionOn = js.InjectionOn,
                     HandleUrl = js.HandleUrl,
                     Src = js.Src,
                     Path = js.Path,
+                    Tag = js.Tag,
                     ScriptContent = js.ScriptContent
                 };
+            }
+        }
+
+        /// <summary>
+        /// 返回请求头部信息配置集合
+        /// </summary>
+        /// <returns></returns>
+        internal IEnumerable<RequestParamsCaptureConfigItem> GetRequestParamsCaptureConfigItem()
+        {
+            if (this.AppConfig?.RequestParamsCaptures == null)
+                yield break;
+            foreach (RequestParamsCaptureConfigItem configItem in this.AppConfig.RequestParamsCaptures)
+            {
+                yield return configItem;
             }
         }
     }

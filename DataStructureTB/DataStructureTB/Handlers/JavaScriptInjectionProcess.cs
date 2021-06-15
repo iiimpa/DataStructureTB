@@ -63,6 +63,7 @@ namespace DataStructureTB.Handlers
         {
             this.injectEnvir = rps;
         }
+
         internal void SetInjectionItem(IEnumerable<ResponseFilterConfigItem> jsConfigs)
         {
             this.jsCfgs = jsConfigs;

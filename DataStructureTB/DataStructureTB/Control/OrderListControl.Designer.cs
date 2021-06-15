@@ -37,7 +37,6 @@ namespace DataStructureTB.Control
             // 
             this.flow_left.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flow_left.AutoSize = true;
-            this.flow_left.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flow_left.Location = new System.Drawing.Point(6, 5);
             this.flow_left.MaximumSize = new System.Drawing.Size(281, 0);
             this.flow_left.MinimumSize = new System.Drawing.Size(281, 100);

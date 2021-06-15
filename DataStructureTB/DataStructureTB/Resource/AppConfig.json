@@ -7,14 +7,111 @@
   "InjectFinger": "apiInject.finger",
   "InjectTaoUser": "apiInject.user",
   "InjectTaoPass": "apiInject.pass",
+  "InjectRequestParams": "apiInject.requestParams",
   "JavaScripts": [
+    {
+      "InjectionPos": "<head>",
+      "InjectionOn": "right",
+      "HandleUrl": "*",
+      "Src": "https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900",
+      "Tag": "link",
+      "Path": "",
+      "ScriptContent": ""
+    },
+    {
+      "InjectionPos": "<head>",
+      "InjectionOn": "right",
+      "HandleUrl": "*",
+      "Src": "https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css",
+      "Tag": "link",
+      "Path": "",
+      "ScriptContent": ""
+    },
+    {
+      "InjectionPos": "<head>",
+      "InjectionOn": "right",
+      "HandleUrl": "*",
+      "Src": "https://localhost:44302/wwwroot/chunk-vendors.727e6846.css",
+      "Tag": "link",
+      "Path": "",
+      "ScriptContent": ""
+    },
+    {
+      "InjectionPos": "<head>",
+      "InjectionOn": "right",
+      "HandleUrl": "*",
+      "Src": "https://localhost:44302/wwwroot/v-application.css",
+      "Tag": "link",
+      "Path": "",
+      "ScriptContent": ""
+    },
     {
       "InjectionPos": "</head>",
       "InjectionOn": "left",
-      "HandleUrl": "https://www.baidu.com",
+      "HandleUrl": "*",
+      "Tag": "script",
       "Src": "",
-      "Path": "./Resource/test.js",
+      "Path": "./Resource/fingerprint.js",
       "ScriptContent": ""
+    },
+    {
+      "InjectionPos": "</body>",
+      "InjectionOn": "left",
+      "HandleUrl": "^((https|http|ftp|rtsp|mms)?:\\/\\/login.taobao.com/member/login.jhtml)[^\\s]+",
+      "Src": "",
+      "Tag": "script",
+      "Path": "./Resource/loginitem.js",
+      "ScriptContent": ""
+    },
+    {
+      "InjectionPos": "</body>",
+      "InjectionOn": "left",
+      "HandleUrl": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/mq/overview)[^\\s]+",
+      "Src": "https://localhost:44302/wwwroot/chunk-vendors.3b1648ad.js",
+      "Tag": "script",
+      "Path": "",
+      "ScriptContent": ""
+    },
+    {
+      "InjectionPos": "</body>",
+      "InjectionOn": "left",
+      "HandleUrl": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/mq/overview)[^\\s]+",
+      "Src": "https://localhost:44302/wwwroot/app.7c7f0d1d.js",
+      "Tag": "script",
+      "Path": "",
+      "ScriptContent": ""
+    }
+  ],
+  "RequestParamsCaptures": [
+    {
+      "Url": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/mq/supply/mkt/overview.json)[^\\s]+",
+      "Fields": [ "Transit-Id", "Onetrace-Card-Id", "token" ],
+      "Name": "Request_overview"
+    },
+    {
+      "Url": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/mq/supply/mkt/trend/cate.json)[^\\s]+",
+      "Fields": [ "Transit-Id", "Onetrace-Card-Id", "token", "bx-umidtoken", "bx-ua" ],
+      "Name": "Request_cate"
+    },
+    {
+      "Url": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/mq/supply/deal/list.json)[^\\s]+",
+      "Fields": [ "Transit-Id", "Onetrace-Card-Id", "token", "bx-umidtoken", "bx-ua" ],
+      "Name": "Request_list"
+    },
+    {
+      "Url": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/mq/supply/mkt/childCate.json)[^\\s]+",
+      "Fields": [ "Transit-Id", "Onetrace-Card-Id", "token", "bx-umidtoken", "bx-ua" ],
+      "Name": "Request_childcate"
+    },
+    {
+      "Url": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/mq/supply/mkt/area/province.json)[^\\s]+",
+      "Fields": [ "Transit-Id", "Onetrace-Card-Id", "token", "bx-umidtoken", "bx-ua" ],
+      "Name": "Request_province"
+    },
+    {
+      "Url": "^((https|http|ftp|rtsp|mms)?:\\/\\/sycm.taobao.com/mc/industry/searchWord.json)[^\\s]+",
+      "Fields": [ "Transit-Id", "Onetrace-Card-Id", "token", "bx-umidtoken", "bx-ua" ],
+      "Name": "Request_searchword"
     }
   ]
 }
