@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using DataStructureTB.Control;
 using System.Collections.Generic;
 using DataStructureTB.Model.EventArguments;
+using DataStructureTB.Handlers;
+using CefSharp.WinForms;
+using DataStructureTB.Common.HttpAccessClients;
 
 namespace DataStructureTB.Forms
 {
@@ -83,15 +86,18 @@ namespace DataStructureTB.Forms
                 this.BeginInvoke((Action<CreateOrderItemWebInfo, bool>)this.CreateOrderItemWebPage, createInfo, selected);
                 return;
             }
-
             RequestContextSettings rspContextSettings = new RequestContextSettings();
 
-            //rspContextSettings.CachePath = "D:\\Evan\\新建文件夹\\DataStructureTB\\DataStructureTB\\DataStructureTB\\bin\\Debug\\netcoreapp3.1\\Users Data\\Default";
             rspContextSettings.CachePath = createInfo.LocalStoragPath;
-
             WebBrowserUC chrome = new WebBrowserUC(createInfo.OrderDetails.order_url_url, new RequestContext(rspContextSettings));
             //控件绑定指纹等信息
-            chrome.Chrome.SetBindInfo(createInfo.OrderDetails.order_cookie_id, createInfo.OrderDetails.order_cookie, createInfo.OrderDetails.order_fingerprint);
+            chrome.Chrome.SetBindInfo(
+                createInfo.OrderDetails.order_cookie_id,
+                createInfo.OrderDetails.order_cookie,
+                createInfo.OrderDetails.order_fingerprint,
+                //createInfo.OrderDetails.order_ip_ip + ":" + createInfo.OrderDetails.order_ip_port
+                "113.94.19.166:19083"
+               );
             chrome.Chrome.CookieId = createInfo.OrderDetails.order_cookie_id;
             chrome.Chrome.Cookie = createInfo.OrderDetails.order_cookie;
             chrome.Chrome.Cookie = createInfo.OrderDetails.order_fingerprint;
@@ -173,6 +179,7 @@ namespace DataStructureTB.Forms
         {
 
         }
+
         internal void LoadOrderItems(IEnumerable<OrderItemModel> orders)
         {
             if (orders != null)
@@ -188,6 +195,28 @@ namespace DataStructureTB.Forms
                     });
                 }
             }
+        }
+
+        private void pb_logout_Click(object sender, EventArgs e)
+        {
+//            Task.Factory.StartNew(() => new LogoutHttpAccess().LogoutUser(createInfo))
+//            .ContinueWith(tsk =>
+//            {
+//                try
+//                {
+//                    LoginApiModel ans = tsk.Result;
+//                }
+//                catch (Exception ex)
+//                {
+//#if DEBUG
+//                    throw ex;
+//#endif
+//                }
+//                finally
+//                {
+
+//                }
+//            });
         }
     }
 }

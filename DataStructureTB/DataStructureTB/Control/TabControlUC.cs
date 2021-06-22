@@ -35,7 +35,6 @@ namespace DataStructureTB.Control
         private SortedDictionary<int, bool> _TabPageMouseState;
         private Timer drawTimer;
 
-
         //绘制选项卡的关闭按钮
         private void tabs_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -103,6 +102,9 @@ namespace DataStructureTB.Control
 
         private void timer_Tick(object sender, EventArgs e)
         {
+
+            if (!IsHandleCreated)
+                return;
             Point pMouse = MousePosition;
             pMouse = this.PointToClient(pMouse);
 

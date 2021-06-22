@@ -13,6 +13,12 @@ namespace DataStructureTB.Handlers
     /// </summary>
     class RequestHandler : CefSharp.Handler.RequestHandler
     {
+
+        protected override bool GetAuthCredentials(IWebBrowser chromiumWebBrowser, IBrowser browser, string originUrl, bool isProxy, string host, int port, string realm, string scheme, IAuthCallback callback)
+        {
+            return base.GetAuthCredentials(chromiumWebBrowser, browser, originUrl, isProxy, host, port, realm, scheme, callback);
+        }
+
         protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
         {
             var JavaScriptObject = chromiumWebBrowser as IJavaScriptObject;
