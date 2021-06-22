@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace DataStructureTB.Forms
 {
     partial class MainForm
@@ -29,11 +31,14 @@ namespace DataStructureTB.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.split_LeftWithRight = new System.Windows.Forms.SplitContainer();
             this.split_OrderlstWithNotice = new System.Windows.Forms.SplitContainer();
             this.uc_orderlst = new DataStructureTB.Control.OrderListControl();
             this.panel_notice = new System.Windows.Forms.Panel();
             this.panel_controlPanel = new System.Windows.Forms.Panel();
+            this.lb_logout = new System.Windows.Forms.Label();
+            this.pb_logout = new System.Windows.Forms.PictureBox();
             this.tabs = new DataStructureTB.Control.TabControlUC();
             this.tab_home = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.split_LeftWithRight)).BeginInit();
@@ -44,6 +49,8 @@ namespace DataStructureTB.Forms
             this.split_OrderlstWithNotice.Panel1.SuspendLayout();
             this.split_OrderlstWithNotice.Panel2.SuspendLayout();
             this.split_OrderlstWithNotice.SuspendLayout();
+            this.panel_controlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_logout)).BeginInit();
             this.tabs.SuspendLayout();
             this.tab_home.SuspendLayout();
             this.SuspendLayout();
@@ -115,12 +122,38 @@ namespace DataStructureTB.Forms
             // panel_controlPanel
             // 
             this.panel_controlPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_controlPanel.Controls.Add(this.lb_logout);
+            this.panel_controlPanel.Controls.Add(this.pb_logout);
             this.panel_controlPanel.Cursor = System.Windows.Forms.Cursors.Default;
             this.panel_controlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_controlPanel.Location = new System.Drawing.Point(0, 0);
             this.panel_controlPanel.Name = "panel_controlPanel";
             this.panel_controlPanel.Size = new System.Drawing.Size(277, 441);
             this.panel_controlPanel.TabIndex = 0;
+            // 
+            // lb_logout
+            // 
+            this.lb_logout.AutoSize = true;
+            this.lb_logout.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lb_logout.Location = new System.Drawing.Point(37, 57);
+            this.lb_logout.Name = "lb_logout";
+            this.lb_logout.Size = new System.Drawing.Size(82, 24);
+            this.lb_logout.Cursor = Cursors.Hand;
+            this.lb_logout.TabIndex = 1;
+            this.lb_logout.Text = "退出登录";
+            this.lb_logout.Click += new System.EventHandler(this.pb_logout_Click);
+            // 
+            // pb_logout
+            // 
+            this.pb_logout.Image = ((System.Drawing.Image)(resources.GetObject("pb_logout.Image")));
+            this.pb_logout.Location = new System.Drawing.Point(2, 2);
+            this.pb_logout.Name = "pb_logout";
+            this.pb_logout.Size = new System.Drawing.Size(145, 52);
+            this.pb_logout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pb_logout.Cursor = Cursors.Hand;
+            this.pb_logout.TabIndex = 0;
+            this.pb_logout.TabStop = false;
+            this.pb_logout.Click += new System.EventHandler(this.pb_logout_Click);
             // 
             // tabs
             // 
@@ -164,6 +197,9 @@ namespace DataStructureTB.Forms
             this.split_OrderlstWithNotice.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.split_OrderlstWithNotice)).EndInit();
             this.split_OrderlstWithNotice.ResumeLayout(false);
+            this.panel_controlPanel.ResumeLayout(false);
+            this.panel_controlPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_logout)).EndInit();
             this.tabs.ResumeLayout(false);
             this.tab_home.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -178,6 +214,8 @@ namespace DataStructureTB.Forms
         private System.Windows.Forms.Panel panel_controlPanel;
         private Control.TabControlUC tabs;
         private System.Windows.Forms.TabPage tab_home;
+        private System.Windows.Forms.Label lb_logout;
+        private System.Windows.Forms.PictureBox pb_logout;
     }
 }
 

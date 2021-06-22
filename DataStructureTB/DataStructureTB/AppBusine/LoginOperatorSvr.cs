@@ -82,7 +82,6 @@ namespace DataStructureTB.AppBusine
                 Time = n.time
             }) ?? new NoticeModel[0];
 
-
             this.SetAuthSuccessFlag();
             this.CloseLogin();//登录成功，退出登录界面
         }

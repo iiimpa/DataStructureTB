@@ -5,10 +5,7 @@
     <_LastSelectedProfileId>D:\Evan\新建文件夹\DataStructureTB\DataStructureTB\DataStructureTB\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="Control\ChromeDriver.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Control\Navbar.cs">
+    <Compile Update="Control\Browser.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="Control\OrderItemControl.cs">

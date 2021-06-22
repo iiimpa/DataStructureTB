@@ -1,6 +1,7 @@
 ﻿using CefSharp;
 using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace DataStructureTB.Handlers
@@ -20,7 +21,7 @@ namespace DataStructureTB.Handlers
 
         public void OnDownloadUpdated(IWebBrowser chromiumWebBrowser, IBrowser browser, DownloadItem downloadItem, IDownloadItemCallback callback)
         {
-            if(downloadItem.ReceivedBytes >= downloadItem.TotalBytes || callback.IsDisposed)
+            if (downloadItem.ReceivedBytes >= downloadItem.TotalBytes || callback.IsDisposed)
             {
                 return;
             }
