@@ -1,6 +1,7 @@
-﻿namespace DataStructureTB.Control
+﻿
+namespace DataStructureTB.Control
 {
-    partial class Navbar
+    partial class Browser
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -28,9 +29,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Height = 50;
         }
 
         #endregion

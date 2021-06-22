@@ -1,5 +1,7 @@
 ﻿using CefSharp;
+using DataStructureTB.Handlers;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace DataStructureTB.Control
@@ -15,18 +17,18 @@ namespace DataStructureTB.Control
         }
         public WebBrowserUC(string address, CefSharp.IRequestContext requestContext = null) : this()
         {
-            this.Chrome = new ChromeDriver(address, requestContext);
+            this.Chrome = new Browser(address, requestContext);
             this.Chrome.AddressChanged += this.chorme_AddressChanged;
             this.panel_browerContainer.Controls.Add(this.Chrome);
 
         }
         public WebBrowserUC(CefSharp.Web.HtmlString html, CefSharp.IRequestContext requestContext = null) : this()
         {
-            this.Chrome = new ChromeDriver(html, requestContext);
+            this.Chrome = new Browser(html, requestContext);
             this.panel_browerContainer.Controls.Add(this.Chrome);
         }
 
-        public ChromeDriver Chrome { get; private set; }
+        public Browser Chrome { get; private set; }
 
 
         private void chorme_AddressChanged(object sender, AddressChangedEventArgs e)
