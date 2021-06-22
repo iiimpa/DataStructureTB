@@ -10,6 +10,9 @@ namespace DataStructureTB.Common
     /// </summary>
     internal static class HttpHelper
     {
+        //全局重用
+        private readonly static HttpClient GLOBALCHttpInstance = new HttpClient();
+
         internal static HttpResponseMessage HttpGet(string url)
         {
             return HttpHelper.HttpGetAsync(url).Result;
@@ -17,7 +20,7 @@ namespace DataStructureTB.Common
         internal async static Task<HttpResponseMessage> HttpGetAsync(string url)
         {
             //note:由于winform是单线程程序，必须要配置ConfigureAwait，否则容易造成死锁
-            return await new HttpClient().GetAsync(url).ConfigureAwait(false);
+            return await GLOBALCHttpInstance.GetAsync(url).ConfigureAwait(false);
         }
         internal static HttpResponseMessage HttpPost(string url, object content)
         {
@@ -31,7 +34,7 @@ namespace DataStructureTB.Common
                 str_content = JSON.Serialize(content);
 
             StringContent rspCnt = new StringContent(str_content, System.Text.Encoding.UTF8, "application/json");
-            return await new HttpClient().PostAsync(url, rspCnt).ConfigureAwait(false);
+            return await GLOBALCHttpInstance.PostAsync(url, rspCnt).ConfigureAwait(false);
         }
     }
 }

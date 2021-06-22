@@ -11,10 +11,11 @@ namespace DataStructureTB.Control
         {
             InitializeComponent();
 
-            this.items = new List<OrderItem[]>();
+            this.items = new LinkedList<OrderItem>();
         }
 
-        private List<OrderItem[]> items;
+        //private List<OrderItem[]> items;
+        private LinkedList<OrderItem> items;
 
         /// <summary>
         /// 订单项的按钮的事件
@@ -32,29 +33,12 @@ namespace DataStructureTB.Control
         }
         private void AppendOrderItem(OrderItem item)
         {
-            int row = this.GetRowCount();
-            int col = this.GetColCount();
-
-            if (row == 0 || this.items[row - 1][col - 1] != null)
-            {
-                this.items.Add(new OrderItem[2] { item, null });
-                return;
-            }
-            this.items[this.GetRowCount() - 1][this.GetColCount() - 1] = item;
+            this.items.AddLast(item);
         }
         private void AppendOrderItemControl(OrderItemControl itemCtrl)
         {
             FlowLayoutPanel left = this.flow_left;
-            FlowLayoutPanel right = this.flow_right;
-            
-            if(left.Controls.Count > right.Controls.Count)
-            {
-                right.Controls.Add(itemCtrl);
-            }
-            else
-            {
-                left.Controls.Add(itemCtrl);
-            }
+            left.Controls.Add(itemCtrl);
         }
         private OrderItemControl CreateOrderItemControl(OrderItem order)
         {
@@ -62,7 +46,7 @@ namespace DataStructureTB.Control
                 throw new Exception($"参数不能为null：{nameof(order)}");
 
             OrderItemControl item = new OrderItemControl();
-            item.Anchor = AnchorStyles.None;
+            item.Anchor = AnchorStyles.Left | AnchorStyles.Top;
             item.Tag = order;
             item.SetTitle($"{order.Name}({order.Mold})");
             item.SetDueDate(order.Duedate);

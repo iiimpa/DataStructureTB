@@ -30,30 +30,17 @@ namespace DataStructureTB.Control
         private void InitializeComponent()
         {
             this.flow_left = new System.Windows.Forms.FlowLayoutPanel();
-            this.flow_right = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // flow_left
             // 
-            this.flow_left.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flow_left.AutoSize = true;
-            this.flow_left.Location = new System.Drawing.Point(6, 5);
-            this.flow_left.MaximumSize = new System.Drawing.Size(281, 0);
-            this.flow_left.MinimumSize = new System.Drawing.Size(281, 100);
+            this.flow_left.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flow_left.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flow_left.Location = new System.Drawing.Point(5, 5);
             this.flow_left.Name = "flow_left";
-            this.flow_left.Size = new System.Drawing.Size(281, 100);
+            this.flow_left.Size = new System.Drawing.Size(533, 284);
             this.flow_left.TabIndex = 0;
-            // 
-            // flow_right
-            // 
-            this.flow_right.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.flow_right.AutoSize = true;
-            this.flow_right.Location = new System.Drawing.Point(290, 5);
-            this.flow_right.MaximumSize = new System.Drawing.Size(281, 0);
-            this.flow_right.MinimumSize = new System.Drawing.Size(281, 100);
-            this.flow_right.Name = "flow_right";
-            this.flow_right.Size = new System.Drawing.Size(281, 100);
-            this.flow_right.TabIndex = 1;
             // 
             // OrderListControl
             // 
@@ -61,12 +48,11 @@ namespace DataStructureTB.Control
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Controls.Add(this.flow_left);
-            this.Controls.Add(this.flow_right);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "OrderListControl";
             this.Padding = new System.Windows.Forms.Padding(5);
-            this.Size = new System.Drawing.Size(576, 117);
+            this.Size = new System.Drawing.Size(543, 294);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -74,6 +60,5 @@ namespace DataStructureTB.Control
 
         #endregion
         private System.Windows.Forms.FlowLayoutPanel flow_left;
-        private System.Windows.Forms.FlowLayoutPanel flow_right;
     }
 }
